@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "669573783434",
+    "project_id": "fixlit-hub",
+    "storage_bucket": "fixlit-hub.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:669573783434:android:cce2a8f55a95ba0468b273",
+        "android_client_info": {
+          "package_name": "com.example.fixlit"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBo4UmHj04fSJiZssMqpKfg54wOHwv_KrU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
