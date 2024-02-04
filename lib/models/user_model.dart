@@ -1,5 +1,5 @@
-class PUser {
-  PUser({
+class MainUser {
+  MainUser({
     required this.name,
     required this.id,
     required this.email,
@@ -12,7 +12,7 @@ class PUser {
   late String createdAt;
   late String image;
 
-  PUser.fromJson(Map<String, dynamic> json) {
+  MainUser.fromJson(Map<String, dynamic> json) {
     name = json["name"] ?? "";
     id = json["id"] ?? "";
     email = json["email"] ?? "";

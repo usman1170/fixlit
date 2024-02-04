@@ -24,7 +24,7 @@ class MyDrawer extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.only(left: 16),
                 child: Text(
-                  "FamiCare",
+                  "FixLit",
                   style: TextStyle(
                     fontSize: 26,
                     color: Colors.white,

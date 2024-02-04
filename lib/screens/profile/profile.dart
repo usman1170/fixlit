@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key, required this.user});
-  final PUser user;
+  final MainUser user;
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();

@@ -317,7 +317,7 @@ class _NewSignUpScreenState extends State<NewSignUpScreen> {
                 .then((value) async {
               final user = FirebaseAuth.instance.currentUser;
               final date = DateTime.now().toString();
-              final pUser = PUser(
+              final pUser = MainUser(
                 name: _name.text.toString(),
                 id: user!.uid,
                 email: _email.text.toString(),

@@ -11,7 +11,7 @@ import 'package:image_picker/image_picker.dart';
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key, required this.user});
-  final PUser user;
+  final MainUser user;
 
   @override
   State<EditProfileScreen> createState() => _EditProfileScreenState();

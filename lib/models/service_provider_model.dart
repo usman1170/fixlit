@@ -1,5 +1,5 @@
-class JrUser {
-  JrUser({
+class ServiceProvider {
+  ServiceProvider({
     required this.image,
     required this.name,
     required this.createdAt,
@@ -16,7 +16,7 @@ class JrUser {
   late String lat;
   late String long;
 
-  JrUser.fromJson(Map<String, dynamic> json) {
+  ServiceProvider.fromJson(Map<String, dynamic> json) {
     image = json['image'] ?? '';
     name = json['name'] ?? '';
     createdAt = json['created_at'] ?? '';

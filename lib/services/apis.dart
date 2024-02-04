@@ -14,7 +14,7 @@ class Services {
   // all fucntions
   static Future<void> createUser() async {
     final date = DateTime.now().toString();
-    final pUser = PUser(
+    final pUser = MainUser(
       name: user.displayName.toString(),
       id: user.uid,
       email: user.email.toString(),
@@ -111,7 +111,7 @@ class Services {
   }
 
   // get my profile
-  static PUser me = PUser(
+  static MainUser me = MainUser(
     name: "Name",
     id: user.uid,
     email: "Email",
@@ -121,7 +121,7 @@ class Services {
   static Future<void> getMyProfile() async {
     await firestore.collection("p_user").doc(user.uid).get().then((user) async {
       if (user.exists) {
-        me = PUser.fromJson(user.data()!);
+        me = MainUser.fromJson(user.data()!);
       } else {
         await createUser().then((value) => getMyProfile());
       }
