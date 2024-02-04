@@ -130,7 +130,7 @@ class _NewSignUpScreenState extends State<NewSignUpScreen> {
             height: 12,
           ),
           const Text(
-            "FamiCare",
+            "FixLit Hub",
             style: TextStyle(
               color: Colors.white,
               fontSize: 28,

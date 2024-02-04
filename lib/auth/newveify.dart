@@ -111,7 +111,7 @@ class _NewVerifyViewState extends State<NewVerifyView> {
             height: 12,
           ),
           const Text(
-            "FamiCare",
+            "FixLit Hub",
             style: TextStyle(
               color: Colors.white,
               fontSize: 28,
@@ -154,7 +154,7 @@ class _NewVerifyViewState extends State<NewVerifyView> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          "Welcome FamiCare",
+          "Welcome FixLit Hub",
           style: TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.w600,

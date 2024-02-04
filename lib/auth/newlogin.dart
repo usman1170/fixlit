@@ -171,7 +171,7 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
             height: 12,
           ),
           const Text(
-            "FamiCare",
+            "FixLit Hub",
             style: TextStyle(
               color: Colors.white,
               fontSize: 28,

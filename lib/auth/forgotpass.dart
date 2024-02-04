@@ -127,7 +127,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             height: 12,
           ),
           const Text(
-            "FamiCare",
+            "FixLit Hub",
             style: TextStyle(
               color: Colors.white,
               fontSize: 28,
@@ -174,7 +174,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          "Welcome FamiCare",
+          "Welcome FixLit Hub",
           style: TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.w600,
