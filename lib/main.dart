@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       title: 'FixLit Hub',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.deepPurple,
+          seedColor: Colors.blue,
         ),
         useMaterial3: true,
       ),
