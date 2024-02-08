@@ -68,13 +68,13 @@ class MyDrawer extends StatelessWidget {
                 title: "Profile",
                 ontap: () {
                   Navigator.of(context).pop();
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => ProfileScreen(
-                          user: Services.me,
-                        ),
-                      ));
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (_) => ProfileScreen(
+                  //         user: Services.me,
+                  //       ),
+                  //     ));
                 },
               ),
               const Divider(

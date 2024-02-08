@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:fixlit/auth/newlogin.dart';
-import 'package:fixlit/auth/newveify.dart';
+import 'package:fixlit/auth/veify.dart';
+import 'package:fixlit/auth/login.dart';
 import 'package:fixlit/firebase_options.dart';
-import 'package:fixlit/screens/home.dart';
 import 'package:fixlit/screens/splash.dart';
+import 'package:fixlit/screens/user_decider.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
@@ -49,12 +49,12 @@ class _BuilderScreenState extends State<BuilderScreen> {
         final user = FirebaseAuth.instance.currentUser;
         if (user != null) {
           if (user.emailVerified) {
-            return const UserHomeScreen();
+            return const UserDeciderScreen();
           } else {
             return const NewVerifyView();
           }
         } else {
-          return const NewLoginScreen();
+          return const UserLoginScreen();
         }
       },
     );

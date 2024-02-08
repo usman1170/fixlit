@@ -5,21 +5,22 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fixlit/auth/forgotpass.dart';
-import 'package:fixlit/auth/newsignup.dart';
-import 'package:fixlit/screens/home.dart';
+import 'package:fixlit/auth/signup.dart';
+import 'package:fixlit/main.dart';
+import 'package:fixlit/screens/user_home.dart';
 import 'package:fixlit/widgets/dialogs.dart';
 import 'package:fixlit/widgets/grey_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class NewLoginScreen extends StatefulWidget {
-  const NewLoginScreen({super.key});
+class UserLoginScreen extends StatefulWidget {
+  const UserLoginScreen({super.key});
 
   @override
-  State<NewLoginScreen> createState() => _NewLoginScreenState();
+  State<UserLoginScreen> createState() => _UserLoginScreenState();
 }
 
-class _NewLoginScreenState extends State<NewLoginScreen> {
+class _UserLoginScreenState extends State<UserLoginScreen> {
   late Color mycolor;
   late Size mq;
   final TextEditingController _email = TextEditingController();
@@ -86,8 +87,6 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
               image: const DecorationImage(
                 image: AssetImage("assets/imgs/bg3.jpg"),
                 fit: BoxFit.cover,
-                // colorFilter: ColorFilter.mode(
-                //     mycolor.withOpacity(0.2), BlendMode.dstATop),
               ),
             ),
             child: const Scaffold(
@@ -305,7 +304,9 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const NewSignUpScreen(),
+                  builder: (context) => const UserSignUpScreen(
+                    user: 'user',
+                  ),
                 ),
               );
             },
@@ -349,11 +350,11 @@ class _NewLoginScreenState extends State<NewLoginScreen> {
             setState(() {
               isLoading = false;
             });
-            // Navigator.pushReplacement(
-            //     context,
-            //     MaterialPageRoute(
-            //       builder: (context) => const BuilderScreen(),
-            //     ));
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const BuilderScreen(),
+                ));
           });
         } on FirebaseAuthException catch (e) {
           // print("Error is ${e.code}");

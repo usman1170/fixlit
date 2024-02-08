@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -14,12 +12,12 @@ class Services {
   // all fucntions
   static Future<void> createUser() async {
     final date = DateTime.now().toString();
-    final pUser = MainUser(
+    final pUser = UserModel(
       name: user.displayName.toString(),
       id: user.uid,
       email: user.email.toString(),
       createdAt: date,
-      image: user.photoURL.toString(),
+      role: user.photoURL.toString(),
     );
     await firestore.collection("p_user").doc(user.uid).set(
           pUser.toJson(),
@@ -35,17 +33,17 @@ class Services {
   }
 
   // update profile pic
-  static Future<void> updateProfilePic(File file) async {
-    final ext = file.path.split(".").first;
-    final ref = storage.ref().child("images/${user.uid}.$ext");
-    await ref
-        .putFile(file, SettableMetadata(contentType: "image/$ext"))
-        .then((p0) {});
-    me.image = await ref.getDownloadURL();
-    await firestore.collection("p_user").doc(user.uid).update({
-      "image": me.image,
-    });
-  }
+  // static Future<void> updateProfilePic(File file) async {
+  //   final ext = file.path.split(".").first;
+  //   final ref = storage.ref().child("images/${user.uid}.$ext");
+  //   await ref
+  //       .putFile(file, SettableMetadata(contentType: "image/$ext"))
+  //       .then((p0) {});
+  //   me.image = await ref.getDownloadURL();
+  //   await firestore.collection("p_user").doc(user.uid).update({
+  //     "image": me.image,
+  //   });
+  // }
 
 //forget password
   static Future<void> resetPassword(String email) async {
@@ -111,36 +109,22 @@ class Services {
   }
 
   // get my profile
-  static MainUser me = MainUser(
+  static UserModel me = UserModel(
     name: "Name",
     id: user.uid,
     email: "Email",
     createdAt: "createdAt",
-    image: "null",
+    role: "null",
   );
   static Future<void> getMyProfile() async {
-    await firestore.collection("p_user").doc(user.uid).get().then((user) async {
+    await firestore.collection("users").doc(user.uid).get().then((user) async {
       if (user.exists) {
-        me = MainUser.fromJson(user.data()!);
+        me = UserModel.fromJson(user.data()!);
       } else {
         await createUser().then((value) => getMyProfile());
       }
     });
   }
-  // getting data or my profile
-  // static late PUser me;
-  // static Future<void> myProfile() async {
-  //   await firestore.collection("p_user").doc(user.uid).get().then((user) async {
-  //     if (user.exists) {
-  //       me = PUser.fromJson(user.data()!);
-  //       // await getFirebasemessagingToken();
-
-  //       // upDateActiveStatus(true);
-  //     } else {
-  //       await createUser().then((value) => myProfile());
-  //     }
-  //   });
-  // }
 
   // to get location data
   static Stream<DocumentSnapshot<Map<String, dynamic>>> getChildLocation(

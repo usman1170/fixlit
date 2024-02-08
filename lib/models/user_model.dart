@@ -1,23 +1,24 @@
-class MainUser {
-  MainUser({
+class UserModel {
+  UserModel({
     required this.name,
     required this.id,
     required this.email,
     required this.createdAt,
-    required this.image,
+    required this.role,
   });
   late String name;
   late String id;
   late String email;
   late String createdAt;
-  late String image;
 
-  MainUser.fromJson(Map<String, dynamic> json) {
+  late String role;
+
+  UserModel.fromJson(Map<String, dynamic> json) {
     name = json["name"] ?? "";
     id = json["id"] ?? "";
     email = json["email"] ?? "";
     createdAt = json["createdAt"] ?? "";
-    image = json["image"] ?? "";
+    role = json["role"] ?? "";
   }
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
@@ -25,7 +26,7 @@ class MainUser {
     data["id"] = id;
     data["email"] = email;
     data["createdAt"] = createdAt;
-    data["image"] = image;
+    data["role"] = role;
     return data;
   }
 }

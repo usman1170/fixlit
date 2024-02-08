@@ -1,3 +1,4 @@
+import 'package:fixlit/services/apis.dart';
 import 'package:fixlit/widgets/drawers.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,7 @@ class UserHomeScreen extends StatefulWidget {
 class _UserHomeScreenState extends State<UserHomeScreen> {
   @override
   void initState() {
-    // Services.getMyProfile();
+    Services.getMyProfile();
     super.initState();
   }
 
@@ -19,7 +20,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("FixLit"),
+        title: const Text("Client"),
       ),
       drawer: const MyDrawer(),
       body: Container(),

@@ -1,7 +1,7 @@
 // import 'package:cam/routes/routes.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fixlit/auth/newlogin.dart';
+import 'package:fixlit/auth/login.dart';
 import 'package:flutter/material.dart';
 
 class Dialogs {
@@ -112,7 +112,7 @@ class Dialogs {
                           (value) => Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const NewLoginScreen(),
+                              builder: (context) => const UserLoginScreen(),
                             ),
                           ),
                         );
