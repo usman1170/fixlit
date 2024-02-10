@@ -1,5 +1,3 @@
-import 'package:fixlit/screens/profile/profile.dart';
-import 'package:fixlit/services/apis.dart';
 import 'package:fixlit/widgets/dialogs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -74,7 +72,7 @@ class MyDrawer extends StatelessWidget {
                   //       builder: (_) => ProfileScreen(
                   //         user: Services.me,
                   //       ),
-                  //     ));
+                  //     ),);
                 },
               ),
               const Divider(

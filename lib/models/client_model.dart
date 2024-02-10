@@ -1,23 +1,23 @@
-class UserModel {
-  UserModel({
+class ClientModel {
+  ClientModel({
     required this.name,
     required this.id,
     required this.email,
     required this.createdAt,
-    required this.role,
+    required this.image,
   });
   late String name;
   late String id;
   late String email;
   late String createdAt;
-  late String role;
+  late String image;
 
-  UserModel.fromJson(Map<String, dynamic> json) {
+  ClientModel.fromJson(Map<String, dynamic> json) {
     name = json["name"] ?? "";
     id = json["id"] ?? "";
     email = json["email"] ?? "";
     createdAt = json["createdAt"] ?? "";
-    role = json["role"] ?? "";
+    image = json["image"] ?? "";
   }
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
@@ -25,7 +25,7 @@ class UserModel {
     data["id"] = id;
     data["email"] = email;
     data["createdAt"] = createdAt;
-    data["role"] = role;
+    data["image"] = image;
     return data;
   }
 }

@@ -7,7 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fixlit/auth/forgotpass.dart';
 import 'package:fixlit/auth/signup.dart';
 import 'package:fixlit/main.dart';
-import 'package:fixlit/screens/user_home.dart';
+import 'package:fixlit/screens/client_home.dart';
 import 'package:fixlit/widgets/dialogs.dart';
 import 'package:fixlit/widgets/grey_text.dart';
 import 'package:flutter/material.dart';

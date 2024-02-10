@@ -3,7 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fixlit/auth/login.dart';
 import 'package:fixlit/auth/veify.dart';
-import 'package:fixlit/models/service_provider_model.dart';
+import 'package:fixlit/models/client_model.dart';
 import 'package:fixlit/models/user_model.dart';
 import 'package:fixlit/services/apis.dart';
 import 'package:fixlit/widgets/dialogs.dart';
@@ -173,7 +173,8 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
             padding: const EdgeInsets.only(
               top: 8,
             ),
-            child: userType == "user" ? _userBuildForm() : _serviceBuildForm(),
+            child:
+                userType == "client" ? _userBuildForm() : _serviceBuildForm(),
           ),
         ),
       ),
@@ -188,22 +189,22 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             InkWell(
-              onTap: () => selectUserType('user'),
+              onTap: () => selectUserType('client'),
               child: Container(
                 height: 42,
                 width: 105,
                 decoration: BoxDecoration(
-                  color: userType == 'user' ? Colors.blue : null,
+                  color: userType == 'client' ? Colors.blue : null,
                   border: Border.all(
-                    color: userType == 'user' ? Colors.white : Colors.blue,
+                    color: userType == 'client' ? Colors.white : Colors.blue,
                   ),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Center(
                   child: Text(
-                    'User',
+                    'Client',
                     style: TextStyle(
-                      color: userType == 'user' ? Colors.white : Colors.blue,
+                      color: userType == 'client' ? Colors.white : Colors.blue,
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                     ),
@@ -297,17 +298,36 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                       .set(
                         pUser.toJson(),
                       )
-                      .then((value) => {
-                            setState(() {
-                              isLoading = false;
-                            }),
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const NewVerifyView(),
+                      .then(
+                    (value) async {
+                      final userData = ClientModel(
+                        name: _name.text.toString(),
+                        id: user.uid,
+                        email: _email.text.toString(),
+                        createdAt: date,
+                        image: user.photoURL!.toString(),
+                      );
+                      await Services.firestore
+                          .collection("client")
+                          .doc(user.uid)
+                          .set(
+                            userData.toJson(),
+                          )
+                          .then(
+                            (value) => {
+                              setState(() {
+                                isLoading = false;
+                              }),
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const NewVerifyView(),
+                                ),
                               ),
-                            ),
-                          });
+                            },
+                          );
+                    },
+                  );
                 });
               } on FirebaseAuthException catch (e) {
                 print("Error is $e.code}");
@@ -401,22 +421,22 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             InkWell(
-              onTap: () => selectUserType('user'),
+              onTap: () => selectUserType('client'),
               child: Container(
                 height: 42,
                 width: 105,
                 decoration: BoxDecoration(
-                  color: userType == 'user' ? Colors.blue : null,
+                  color: userType == 'client' ? Colors.blue : null,
                   border: Border.all(
-                    color: userType == 'user' ? Colors.white : Colors.blue,
+                    color: userType == 'client' ? Colors.white : Colors.blue,
                   ),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Center(
                   child: Text(
-                    'User',
+                    'Client',
                     style: TextStyle(
-                      color: userType == 'user' ? Colors.white : Colors.blue,
+                      color: userType == 'client' ? Colors.white : Colors.blue,
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                     ),

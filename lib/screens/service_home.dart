@@ -1,3 +1,4 @@
+import 'package:fixlit/widgets/drawers.dart';
 import 'package:flutter/material.dart';
 
 class ServiceProviderHome extends StatefulWidget {
@@ -14,6 +15,7 @@ class _ServiceProviderHomeState extends State<ServiceProviderHome> {
       appBar: AppBar(
         title: const Text("ServiceProvider"),
       ),
+      drawer: const MyDrawer(),
     );
   }
 }

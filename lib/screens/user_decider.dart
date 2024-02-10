@@ -1,6 +1,6 @@
 import 'package:fixlit/auth/login.dart';
 import 'package:fixlit/screens/service_home.dart';
-import 'package:fixlit/screens/user_home.dart';
+import 'package:fixlit/screens/client_home.dart';
 import 'package:fixlit/services/apis.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +20,7 @@ class _UserDeciderScreenState extends State<UserDeciderScreen> {
         print("${Services.me.email}");
         if (Services.me.role == "serviceProvider") {
           return const ServiceProviderHome();
-        } else if (Services.me.role == "user") {
+        } else if (Services.me.role == "client") {
           return const UserHomeScreen();
         } else {
           return const UserLoginScreen();

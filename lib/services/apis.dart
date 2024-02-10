@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:fixlit/models/client_model.dart';
 import 'package:fixlit/models/user_model.dart';
 
 class Services {
@@ -120,6 +121,23 @@ class Services {
     await firestore.collection("users").doc(user.uid).get().then((user) async {
       if (user.exists) {
         me = UserModel.fromJson(user.data()!);
+      } else {
+        await createUser().then((value) => getMyProfile());
+      }
+    });
+  }
+
+  static ClientModel myProfile = ClientModel(
+    name: "Name",
+    id: user.uid,
+    email: "Email",
+    createdAt: "createdAt",
+    image: "null",
+  );
+  static Future<void> userProfile() async {
+    await firestore.collection("client").doc(user.uid).get().then((user) async {
+      if (user.exists) {
+        myProfile = ClientModel.fromJson(user.data()!);
       } else {
         await createUser().then((value) => getMyProfile());
       }
