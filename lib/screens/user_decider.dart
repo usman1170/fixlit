@@ -1,4 +1,4 @@
-import 'package:fixlit/auth/login.dart';
+import 'package:fixlit/auth/screens/login.dart';
 import 'package:fixlit/screens/service_home.dart';
 import 'package:fixlit/screens/client_home.dart';
 import 'package:fixlit/services/apis.dart';
@@ -23,7 +23,7 @@ class _UserDeciderScreenState extends State<UserDeciderScreen> {
         } else if (Services.me.role == "client") {
           return const UserHomeScreen();
         } else {
-          return const UserLoginScreen();
+          return const LoginScreen();
         }
       },
     );

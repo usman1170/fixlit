@@ -1,6 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fixlit/auth/login.dart';
+import 'package:fixlit/auth/screens/login.dart';
 import 'package:fixlit/widgets/dialogs.dart';
 import 'package:fixlit/widgets/grey_text.dart';
 import 'package:flutter/material.dart';
@@ -209,7 +209,7 @@ class _NewVerifyViewState extends State<NewVerifyView> {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => const UserLoginScreen(),
+                builder: (context) => const LoginScreen(),
               ),
             );
           },

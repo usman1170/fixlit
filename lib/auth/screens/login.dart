@@ -4,8 +4,8 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fixlit/auth/forgotpass.dart';
-import 'package:fixlit/auth/signup.dart';
+import 'package:fixlit/auth/screens/forgotpass.dart';
+import 'package:fixlit/auth/screens/signup.dart';
 import 'package:fixlit/main.dart';
 import 'package:fixlit/screens/client_home.dart';
 import 'package:fixlit/widgets/dialogs.dart';
@@ -13,14 +13,14 @@ import 'package:fixlit/widgets/grey_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class UserLoginScreen extends StatefulWidget {
-  const UserLoginScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<UserLoginScreen> createState() => _UserLoginScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _UserLoginScreenState extends State<UserLoginScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   late Color mycolor;
   late Size mq;
   final TextEditingController _email = TextEditingController();

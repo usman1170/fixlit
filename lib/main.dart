@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:fixlit/auth/veify.dart';
-import 'package:fixlit/auth/login.dart';
+import 'package:fixlit/auth/screens/login.dart';
 import 'package:fixlit/firebase_options.dart';
 import 'package:fixlit/screens/splash.dart';
 import 'package:fixlit/screens/user_decider.dart';
@@ -51,10 +50,10 @@ class _BuilderScreenState extends State<BuilderScreen> {
           if (user.emailVerified) {
             return const UserDeciderScreen();
           } else {
-            return const NewVerifyView();
+            return const LoginScreen();
           }
         } else {
-          return const UserLoginScreen();
+          return const LoginScreen();
         }
       },
     );

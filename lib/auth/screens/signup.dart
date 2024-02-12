@@ -1,9 +1,10 @@
 // ignore_for_file: avoid_print, use_build_context_synchronously
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fixlit/auth/login.dart';
-import 'package:fixlit/auth/veify.dart';
+import 'package:fixlit/auth/screens/login.dart';
+import 'package:fixlit/auth/screens/veify.dart';
 import 'package:fixlit/models/client_model.dart';
+import 'package:fixlit/models/service_provider_model.dart';
 import 'package:fixlit/models/user_model.dart';
 import 'package:fixlit/services/apis.dart';
 import 'package:fixlit/widgets/dialogs.dart';
@@ -24,13 +25,159 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
 
   final TextEditingController _name = TextEditingController();
   final TextEditingController _email = TextEditingController();
-  final TextEditingController _catagory = TextEditingController();
   final TextEditingController _password = TextEditingController();
   FirebaseAuth auth = FirebaseAuth.instance;
-
   String userType = "";
   bool isLoading = false;
   bool obscure = true;
+  String selectedCategory = 'catagory';
+  //
+  Future<void> clientSignUp() async {
+    try {
+      final newUser = await auth.createUserWithEmailAndPassword(
+        email: _email.text.toString(),
+        password: _password.text.toString(),
+      );
+      final date = DateTime.now().toString();
+      final pUser = UserModel(
+        name: _name.text.toString(),
+        id: newUser.user!.uid,
+        email: _email.text.toString(),
+        createdAt: date,
+        role: userType,
+      );
+      await Services.firestore.collection("users").doc(newUser.user!.uid).set(
+            pUser.toJson(),
+          );
+      final tUser = ClientModel(
+        name: _name.text.toString(),
+        id: newUser.user!.uid,
+        email: _email.text.toString(),
+        createdAt: date,
+        image: newUser.user!.photoURL ?? "",
+      );
+      await Services.firestore
+          .collection("client")
+          .doc(newUser.user!.uid)
+          .set(
+            tUser.toJson(),
+          )
+          .then(
+            (value) => {
+              setState(() {
+                isLoading = false;
+              }),
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const NewVerifyView(),
+                ),
+              ),
+            },
+          );
+    } on FirebaseAuthException catch (e) {
+      print("Error is $e.code}");
+      if (e.code == 'email-already-in-use') {
+        setState(() {
+          isLoading = false;
+        });
+        Dialogs().errorDialog(context, 'Error Occured', "Email Already in use");
+      } else if (e.code == 'weak-password') {
+        setState(() {
+          isLoading = false;
+        });
+        Dialogs().errorDialog(
+            context, 'Error Occured', "Password must contained 6 letters");
+      } else if (e.code == 'network-request-failed') {
+        setState(() {
+          isLoading = false;
+        });
+        Dialogs().errorDialog(context, 'Error Occured',
+            "Bad Connection. Please check your internet");
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+        Dialogs()
+            .errorDialog(context, 'Error Occured', "Something wents wrong");
+      }
+    }
+  }
+
+  Future<void> serviceSignUp() async {
+    try {
+      final newUser = await auth.createUserWithEmailAndPassword(
+        email: _email.text.toString(),
+        password: _password.text.toString(),
+      );
+      final date = DateTime.now().toString();
+      final pUser = UserModel(
+        name: _name.text.toString(),
+        id: newUser.user!.uid,
+        email: _email.text.toString(),
+        createdAt: date,
+        role: userType,
+      );
+      await Services.firestore.collection("users").doc(newUser.user!.uid).set(
+            pUser.toJson(),
+          );
+      final tUser = ServiceProvider(
+        name: _name.text.toString(),
+        id: newUser.user!.uid,
+        email: _email.text.toString(),
+        createdAt: date,
+        image: newUser.user!.photoURL ?? "",
+        catagory: selectedCategory,
+        userCatagory: userType,
+      );
+      await Services.firestore
+          .collection("service_provider")
+          .doc(newUser.user!.uid)
+          .set(
+            tUser.toJson(),
+          )
+          .then(
+            (value) => {
+              setState(() {
+                isLoading = false;
+              }),
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const NewVerifyView(),
+                ),
+              ),
+            },
+          );
+    } on FirebaseAuthException catch (e) {
+      print("Error is $e.code}");
+      if (e.code == 'email-already-in-use') {
+        setState(() {
+          isLoading = false;
+        });
+        Dialogs().errorDialog(context, 'Error Occured', "Email Already in use");
+      } else if (e.code == 'weak-password') {
+        setState(() {
+          isLoading = false;
+        });
+        Dialogs().errorDialog(
+            context, 'Error Occured', "Password must contained 6 letters");
+      } else if (e.code == 'network-request-failed') {
+        setState(() {
+          isLoading = false;
+        });
+        Dialogs().errorDialog(context, 'Error Occured',
+            "Bad Connection. Please check your internet");
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+        Dialogs()
+            .errorDialog(context, 'Error Occured', "Something wents wrong");
+      }
+    }
+  }
+
   @override
   void initState() {
     _email;
@@ -276,87 +423,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
           if (userType != "") {
             if (_name.text != "") {
               print("ok");
-              try {
-                await auth
-                    .createUserWithEmailAndPassword(
-                  email: _email.text.toString(),
-                  password: _password.text.toString(),
-                )
-                    .then((value) async {
-                  final user = FirebaseAuth.instance.currentUser;
-                  final date = DateTime.now().toString();
-                  final pUser = UserModel(
-                    name: _name.text.toString(),
-                    id: user!.uid,
-                    email: _email.text.toString(),
-                    createdAt: date,
-                    role: userType,
-                  );
-                  await Services.firestore
-                      .collection("users")
-                      .doc(user.uid)
-                      .set(
-                        pUser.toJson(),
-                      )
-                      .then(
-                    (value) async {
-                      final userData = ClientModel(
-                        name: _name.text.toString(),
-                        id: user.uid,
-                        email: _email.text.toString(),
-                        createdAt: date,
-                        image: user.photoURL!.toString(),
-                      );
-                      await Services.firestore
-                          .collection("client")
-                          .doc(user.uid)
-                          .set(
-                            userData.toJson(),
-                          )
-                          .then(
-                            (value) => {
-                              setState(() {
-                                isLoading = false;
-                              }),
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const NewVerifyView(),
-                                ),
-                              ),
-                            },
-                          );
-                    },
-                  );
-                });
-              } on FirebaseAuthException catch (e) {
-                print("Error is $e.code}");
-                if (e.code == 'email-already-in-use') {
-                  setState(() {
-                    isLoading = false;
-                  });
-                  Dialogs().errorDialog(
-                      context, 'Error Occured', "Email Already in use");
-                } else if (e.code == 'weak-password') {
-                  setState(() {
-                    isLoading = false;
-                  });
-                  Dialogs().errorDialog(context, 'Error Occured',
-                      "Password must contained 6 letters");
-                } else if (e.code == 'network-request-failed') {
-                  setState(() {
-                    isLoading = false;
-                  });
-                  Dialogs().errorDialog(context, 'Error Occured',
-                      "Bad Connection. Please check your internet");
-                } else {
-                  setState(() {
-                    isLoading = false;
-                  });
-                  Dialogs().errorDialog(
-                      context, 'Error Occured', "Something wents wrong");
-                }
-              }
+              clientSignUp();
             } else {
               setState(() {
                 isLoading = false;
@@ -380,7 +447,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => const UserLoginScreen(),
+                builder: (context) => const LoginScreen(),
               ),
             );
           },
@@ -493,7 +560,46 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
         SizedBox(
           height: mq.height * .02,
         ),
-        _inputField(_catagory, isCatagory: true),
+        DropdownButtonFormField<String>(
+          value: selectedCategory,
+          onChanged: (String? newValue) {
+            selectedCategory = newValue!;
+          },
+          decoration: InputDecoration(
+            labelText: "Category",
+            labelStyle: const TextStyle(
+              color: Colors.grey,
+              fontSize: 13,
+            ),
+            prefixIcon: const Icon(Icons.info),
+            hintText: "Select Service Category",
+            hintStyle: const TextStyle(fontSize: 13, color: Colors.grey),
+            prefixIconColor: Colors.blue,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            focusedBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(20),
+              ),
+              borderSide: BorderSide(color: Colors.blue),
+            ),
+            contentPadding:
+                const EdgeInsets.only(top: 18, bottom: 18, right: 10),
+          ),
+          items: <String>[
+            'catagory',
+            'Plumber',
+            'Electrician',
+            'Lawn Mowing',
+            'Driver'
+          ].map((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+        ),
         SizedBox(
           height: mq.height * .02,
         ),
@@ -510,76 +616,23 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
             isLoading = true;
           });
           if (userType != "") {
-            if (_name.text != "") {
-              print("ok");
-              try {
-                await auth
-                    .createUserWithEmailAndPassword(
-                  email: _email.text.toString(),
-                  password: _password.text.toString(),
-                )
-                    .then((value) async {
-                  final user = FirebaseAuth.instance.currentUser;
-                  final date = DateTime.now().toString();
-                  final pUser = UserModel(
-                    name: _name.text.toString(),
-                    id: user!.uid,
-                    email: _email.text.toString(),
-                    createdAt: date,
-                    role: userType,
-                  );
-                  await Services.firestore
-                      .collection("users")
-                      .doc(user.uid)
-                      .set(
-                        pUser.toJson(),
-                      )
-                      .then((value) => {
-                            setState(() {
-                              isLoading = false;
-                            }),
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const NewVerifyView(),
-                              ),
-                            ),
-                          });
+            if (selectedCategory != "catagory") {
+              if (_name.text != "") {
+                print("ok");
+                serviceSignUp();
+              } else {
+                setState(() {
+                  isLoading = false;
                 });
-              } on FirebaseAuthException catch (e) {
-                print("Error is $e.code}");
-                if (e.code == 'email-already-in-use') {
-                  setState(() {
-                    isLoading = false;
-                  });
-                  Dialogs().errorDialog(
-                      context, 'Error Occured', "Email Already in use");
-                } else if (e.code == 'weak-password') {
-                  setState(() {
-                    isLoading = false;
-                  });
-                  Dialogs().errorDialog(context, 'Error Occured',
-                      "Password must contained 6 letters");
-                } else if (e.code == 'network-request-failed') {
-                  setState(() {
-                    isLoading = false;
-                  });
-                  Dialogs().errorDialog(context, 'Error Occured',
-                      "Bad Connection. Please check your internet");
-                } else {
-                  setState(() {
-                    isLoading = false;
-                  });
-                  Dialogs().errorDialog(
-                      context, 'Error Occured', "Something wents wrong");
-                }
+                Dialogs().errorDialog(
+                    context, 'Error Occured', "Please Enter your name above");
               }
             } else {
               setState(() {
                 isLoading = false;
               });
-              Dialogs().errorDialog(
-                  context, 'Error Occured', "Please Enter your name above");
+              Dialogs().errorDialog(context, 'Error Occured',
+                  "Please select service catagory above");
             }
           } else {
             setState(() {
@@ -597,7 +650,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => const UserLoginScreen(),
+                builder: (context) => const LoginScreen(),
               ),
             );
           },
