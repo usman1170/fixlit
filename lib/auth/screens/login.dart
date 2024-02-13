@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fixlit/auth/screens/forgotpass.dart';
 import 'package:fixlit/auth/screens/signup.dart';
+import 'package:fixlit/auth/widgets/loading_screen.dart';
 import 'package:fixlit/main.dart';
 import 'package:fixlit/screens/client_home.dart';
 import 'package:fixlit/widgets/dialogs.dart';
@@ -81,45 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
     mycolor = Colors.blue.shade400;
     mq = MediaQuery.of(context).size;
     return isLoading
-        ? Container(
-            decoration: BoxDecoration(
-              color: mycolor,
-              image: const DecorationImage(
-                image: AssetImage("assets/imgs/bg3.jpg"),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: const Scaffold(
-              backgroundColor: Colors.transparent,
-              body: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    CircleAvatar(
-                      radius: 55,
-                      backgroundImage: AssetImage('assets/icon/playstore.png'),
-                    ),
-                    SizedBox(height: 30),
-                    Text(
-                      'Please wait...',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    CircularProgressIndicator(
-                      strokeWidth: 2,
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          )
+        ? const LoadingScreen()
         : Container(
             decoration: BoxDecoration(
               color: mycolor,

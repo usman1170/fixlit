@@ -1,4 +1,4 @@
-import 'package:fixlit/widgets/dialogs.dart';
+import 'package:fixlit/auth/widgets/auth_dialogs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -112,7 +112,7 @@ class MyDrawer extends StatelessWidget {
                 ),
                 title: "LogOut",
                 ontap: () {
-                  Dialogs().logOutDialog(context);
+                  AuthDialogs().logOutDialog(context);
                 },
               ),
             ],

@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fixlit/auth/screens/login.dart';
 import 'package:fixlit/auth/screens/veify.dart';
+import 'package:fixlit/auth/widgets/loading_screen.dart';
 import 'package:fixlit/models/client_model.dart';
 import 'package:fixlit/models/service_provider_model.dart';
 import 'package:fixlit/models/user_model.dart';
@@ -205,45 +206,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
     mycolor = Theme.of(context).primaryColor;
     mq = MediaQuery.of(context).size;
     return isLoading
-        ? Container(
-            decoration: BoxDecoration(
-              color: mycolor,
-              image: const DecorationImage(
-                image: AssetImage("assets/imgs/bg3.jpg"),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: const Scaffold(
-              backgroundColor: Colors.transparent,
-              body: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    CircleAvatar(
-                      radius: 55,
-                      backgroundImage: AssetImage('assets/icon/playstore.png'),
-                    ),
-                    SizedBox(height: 30),
-                    Text(
-                      'Please wait...',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    CircularProgressIndicator(
-                      strokeWidth: 2,
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          )
+        ? const LoadingScreen()
         : Container(
             decoration: BoxDecoration(
               color: mycolor,
