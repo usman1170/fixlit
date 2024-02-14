@@ -20,7 +20,6 @@ class _ServiceProviderHomeState extends State<ServiceProviderHome> {
 
   @override
   Widget build(BuildContext context) {
-    print("Email in Home = ${Services.serviceProvider.email}");
     return Scaffold(
       appBar: AppBar(
         title: const Text("ServiceProvider"),

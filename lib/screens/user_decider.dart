@@ -19,7 +19,6 @@ class _UserDeciderScreenState extends State<UserDeciderScreen> {
     return FutureBuilder(
       future: Services.getMyProfile(),
       builder: (context, snapshot) {
-        print("Decider Screen ${Services.me.email}");
         if (Services.me.role == "client") {
           return const ClientHomeScreen();
         } else if (Services.me.role == "serviceProvider") {

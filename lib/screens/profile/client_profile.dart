@@ -119,7 +119,6 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
           style: const TextStyle(
             color: Colors.white,
             fontSize: 15,
-            // fontWeight: FontWeight.w400,
           ),
         ),
         const SizedBox(

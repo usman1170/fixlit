@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, use_build_context_synchronously
 
 import 'dart:io';
-
 import 'package:fixlit/models/service_provider_model.dart';
 import 'package:fixlit/services/apis.dart';
 import 'package:fixlit/widgets/buttons.dart';
