@@ -2,23 +2,22 @@
 
 import 'dart:io';
 
-import 'package:fixlit/models/service_provider_model.dart';
+import 'package:fixlit/models/client_model.dart';
 import 'package:fixlit/services/apis.dart';
 import 'package:fixlit/widgets/buttons.dart';
 import 'package:fixlit/widgets/dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class ServiceEditProfileScreen extends StatefulWidget {
-  const ServiceEditProfileScreen({super.key, required this.user});
-  final ServiceProvider user;
+class ClientEditProfile extends StatefulWidget {
+  const ClientEditProfile({super.key, required this.user});
+  final ClientModel user;
 
   @override
-  State<ServiceEditProfileScreen> createState() =>
-      _ServiceEditProfileScreenState();
+  State<ClientEditProfile> createState() => _ClientEditProfileState();
 }
 
-class _ServiceEditProfileScreenState extends State<ServiceEditProfileScreen> {
+class _ClientEditProfileState extends State<ClientEditProfile> {
   String? _image;
 
   bool isLoading = false;

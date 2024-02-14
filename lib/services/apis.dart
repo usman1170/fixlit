@@ -1,7 +1,12 @@
+// ignore_for_file: avoid_print
+
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:fixlit/models/client_model.dart';
+import 'package:fixlit/models/service_provider_model.dart';
 import 'package:fixlit/models/user_model.dart';
 
 class Services {
@@ -33,19 +38,6 @@ class Services {
     });
   }
 
-  // update profile pic
-  // static Future<void> updateProfilePic(File file) async {
-  //   final ext = file.path.split(".").first;
-  //   final ref = storage.ref().child("images/${user.uid}.$ext");
-  //   await ref
-  //       .putFile(file, SettableMetadata(contentType: "image/$ext"))
-  //       .then((p0) {});
-  //   me.image = await ref.getDownloadURL();
-  //   await firestore.collection("p_user").doc(user.uid).update({
-  //     "image": me.image,
-  //   });
-  // }
-
 //forget password
   static Future<void> resetPassword(String email) async {
     try {
@@ -55,29 +47,29 @@ class Services {
     }
   }
 
-// adding child to home
-  static Future<bool> addMychilds(String email) async {
-    final data = await firestore
-        .collection("jr_user")
-        .where("email", isEqualTo: email)
-        .get();
-    if (data.docs.isNotEmpty && data.docs.first.id != user.uid) {
-      await firestore
-          .collection("p_user")
-          .doc(user.uid)
-          .collection("my_childs")
-          .doc(data.docs.first.id)
-          .set({
-        "email": email,
-        "id": data.docs.first.id,
-      });
+// // adding child to home
+//   static Future<bool> addMychilds(String email) async {
+//     final data = await firestore
+//         .collection("jr_user")
+//         .where("email", isEqualTo: email)
+//         .get();
+//     if (data.docs.isNotEmpty && data.docs.first.id != user.uid) {
+//       await firestore
+//           .collection("p_user")
+//           .doc(user.uid)
+//           .collection("my_childs")
+//           .doc(data.docs.first.id)
+//           .set({
+//         "email": email,
+//         "id": data.docs.first.id,
+//       });
 
-      return true;
-    } else {
-      // if not exists
-      return false;
-    }
-  }
+//       return true;
+//     } else {
+//       // if not exists
+//       return false;
+//     }
+//   }
 
 // for getting my user
   static Stream<QuerySnapshot<Map<String, dynamic>>> getMyChilds() {
@@ -85,27 +77,6 @@ class Services {
         .collection("p_user")
         .doc(user.uid)
         .collection("my_childs")
-        .snapshots();
-  }
-
-  // to get all users
-  static Stream<QuerySnapshot<Map<String, dynamic>>> getAllUsers(
-      List<String> userIDs) {
-    return firestore
-        .collection("jr_user")
-        .where("id", whereIn: userIDs.isEmpty ? [''] : userIDs)
-        // .where("id", isNotEqualTo: user.uid)
-        .snapshots();
-  }
-  // User info
-
-  static Stream<QuerySnapshot<Map<String, dynamic>>> getLocations(
-      List<String> childIDs) {
-    return firestore
-        .collection("jr_user")
-        .doc(childIDs.first)
-        .collection("location")
-        .where("id", whereIn: childIDs.isEmpty ? [""] : childIDs)
         .snapshots();
   }
 
@@ -127,31 +98,60 @@ class Services {
     });
   }
 
-  static ClientModel myProfile = ClientModel(
+  static ClientModel client = ClientModel(
     name: "Name",
     id: user.uid,
     email: "Email",
     createdAt: "createdAt",
     image: "null",
   );
-  static Future<void> userProfile() async {
+  static Future<void> clientProfile() async {
     await firestore.collection("client").doc(user.uid).get().then((user) async {
       if (user.exists) {
-        myProfile = ClientModel.fromJson(user.data()!);
+        client = ClientModel.fromJson(user.data()!);
       } else {
-        await createUser().then((value) => getMyProfile());
+        await createUser().then((value) => clientProfile());
       }
     });
   }
 
-  // to get location data
-  static Stream<DocumentSnapshot<Map<String, dynamic>>> getChildLocation(
-      String childId) {
-    return firestore
-        .collection("jr_user")
-        .doc(childId)
-        .collection("location")
-        .doc(childId)
-        .snapshots();
+  static ServiceProvider serviceProvider = ServiceProvider(
+    name: "Name",
+    id: user.uid,
+    email: "Email",
+    createdAt: "createdAt",
+    image: "null",
+    catagory: '',
+    userCatagory: '',
+  );
+  static Future<void> serviceProfile() async {
+    await firestore
+        .collection("service_provider")
+        .doc(user.uid)
+        .get()
+        .then((user) async {
+      if (user.exists) {
+        serviceProvider = ServiceProvider.fromJson(user.data()!);
+      } else {
+        await createUser().then((value) => serviceProfile());
+      }
+    });
+  }
+
+  //update profile pic
+  static Future<void> updateProfilePic(File file) async {
+    final ext = file.path.split(".").first;
+    final ref = storage.ref().child("images/${user.uid}.$ext");
+    await ref
+        .putFile(file, SettableMetadata(contentType: "image/$ext"))
+        .then((p0) {});
+    client.image = await ref.getDownloadURL();
+    serviceProvider.image = await ref.getDownloadURL();
+    await firestore
+        .collection(me.role == "client" ? "client" : "service_provider")
+        .doc(user.uid)
+        .update({
+      "image": me.role == "client" ? client.image : serviceProvider.image,
+    });
   }
 }

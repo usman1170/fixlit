@@ -1,4 +1,7 @@
 import 'package:fixlit/auth/widgets/auth_dialogs.dart';
+import 'package:fixlit/screens/profile/client_profile.dart';
+import 'package:fixlit/screens/profile/service_profile.dart';
+import 'package:fixlit/services/apis.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -66,13 +69,18 @@ class MyDrawer extends StatelessWidget {
                 title: "Profile",
                 ontap: () {
                   Navigator.of(context).pop();
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (_) => ProfileScreen(
-                  //         user: Services.me,
-                  //       ),
-                  //     ),);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => Services.me.role == "serviceProvider"
+                          ? ServiceProfileScreen(
+                              user: Services.serviceProvider,
+                            )
+                          : ClientProfileScreen(
+                              user: Services.client,
+                            ),
+                    ),
+                  );
                 },
               ),
               const Divider(

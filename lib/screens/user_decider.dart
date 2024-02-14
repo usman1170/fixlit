@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:fixlit/auth/screens/login.dart';
 import 'package:fixlit/screens/service_home.dart';
 import 'package:fixlit/screens/client_home.dart';
@@ -17,11 +19,11 @@ class _UserDeciderScreenState extends State<UserDeciderScreen> {
     return FutureBuilder(
       future: Services.getMyProfile(),
       builder: (context, snapshot) {
-        print("${Services.me.email}");
-        if (Services.me.role == "serviceProvider") {
+        print("Decider Screen ${Services.me.email}");
+        if (Services.me.role == "client") {
+          return const ClientHomeScreen();
+        } else if (Services.me.role == "serviceProvider") {
           return const ServiceProviderHome();
-        } else if (Services.me.role == "client") {
-          return const UserHomeScreen();
         } else {
           return const LoginScreen();
         }
@@ -29,3 +31,4 @@ class _UserDeciderScreenState extends State<UserDeciderScreen> {
     );
   }
 }
+//serviceProvider

@@ -2,17 +2,17 @@ import 'package:fixlit/services/apis.dart';
 import 'package:fixlit/widgets/drawers.dart';
 import 'package:flutter/material.dart';
 
-class UserHomeScreen extends StatefulWidget {
-  const UserHomeScreen({super.key});
+class ClientHomeScreen extends StatefulWidget {
+  const ClientHomeScreen({super.key});
 
   @override
-  State<UserHomeScreen> createState() => _UserHomeScreenState();
+  State<ClientHomeScreen> createState() => _ClientHomeScreenState();
 }
 
-class _UserHomeScreenState extends State<UserHomeScreen> {
+class _ClientHomeScreenState extends State<ClientHomeScreen> {
   @override
   void initState() {
-    Services.getMyProfile();
+    Services.clientProfile();
     super.initState();
   }
 
