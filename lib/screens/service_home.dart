@@ -24,7 +24,9 @@ class _ServiceProviderHomeState extends State<ServiceProviderHome> {
       appBar: AppBar(
         title: const Text("ServiceProvider"),
       ),
-      body: Text(Services.serviceProvider.email),
+      body: Center(
+        child: Text(Services.serviceProvider.email),
+      ),
       drawer: const MyDrawer(),
     );
   }

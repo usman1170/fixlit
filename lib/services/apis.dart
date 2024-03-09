@@ -97,9 +97,9 @@ class Services {
   }
 
   static ClientModel client = ClientModel(
-    name: "Name",
+    name: user.displayName!,
     id: user.uid,
-    email: "Email",
+    email: user.email!,
     createdAt: "createdAt",
     image: "null",
   );
@@ -114,9 +114,9 @@ class Services {
   }
 
   static ServiceProvider serviceProvider = ServiceProvider(
-    name: "Name",
+    name: user.displayName!,
     id: user.uid,
-    email: "Email",
+    email: user.email!,
     createdAt: "createdAt",
     image: "null",
     catagory: '',

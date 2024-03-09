@@ -23,7 +23,9 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
         title: const Text("Client"),
       ),
       drawer: const MyDrawer(),
-      body: Container(),
+      body: Center(
+        child: Text(Services.client.email),
+      ),
     );
   }
 }
