@@ -26,16 +26,18 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
       drawer: const MyDrawer(),
       body: Column(
         children: [
-          const CustomAppBar(),
+          CustomAppBar(
+            btn: false,
+          ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(
-                height: 12,
+                height: 14,
               ),
               const UpperCatagoryHeader(),
               const SizedBox(
-                height: 16,
+                height: 18,
               ),
               Row(
                 children: [
@@ -53,7 +55,7 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
                 ],
               ),
               const SizedBox(
-                height: 12,
+                height: 14,
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 14),

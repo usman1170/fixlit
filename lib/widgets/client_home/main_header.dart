@@ -1,9 +1,12 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:fixlit/utils/pallate.dart';
 import 'package:fixlit/widgets/client_home/profile_header.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
+  CustomAppBar({required this.btn, super.key});
+  bool btn;
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +26,15 @@ class CustomAppBar extends StatelessWidget {
           const SizedBox(
             height: 15,
           ),
-          const ProfileHeader(),
+          ProfileHeader(
+            isButton: btn,
+          ),
           const SizedBox(
             height: 14,
           ),
           Container(
             margin: const EdgeInsets.only(right: 10),
-            height: 50,
+            height: 47,
             width: MediaQuery.of(context).size.width - 36,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
