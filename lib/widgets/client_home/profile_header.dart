@@ -26,7 +26,7 @@ class ProfileHeader extends StatelessWidget {
         Row(
           children: [
             SizedBox(
-              width: isButton ? 10 : 20,
+              width: isButton ? 8 : 20,
             ),
             Container(
               height: 50,

@@ -2,10 +2,13 @@ import 'package:fixlit/screens/catagory_card_result.dart';
 import 'package:flutter/material.dart';
 
 class CatagoryCard extends StatelessWidget {
-  const CatagoryCard({super.key, required this.title, required this.image});
+  const CatagoryCard({
+    super.key,
+    required this.title,
+    required this.image,
+  });
   final String title;
   final String image;
-  // final VoidCallback ontap;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -24,16 +27,7 @@ class CatagoryCard extends StatelessWidget {
         child: Card(
           elevation: 4,
           child: Container(
-            // height: 185,
-            // width: 140,
             decoration: BoxDecoration(
-              // boxShadow: [
-              //   BoxShadow(
-              //     color: Colors.black54,
-              //     blurRadius: 4,
-              //     spreadRadius: .1,
-              //   )
-              // ],
               borderRadius: BorderRadius.circular(20),
               color: Colors.grey.shade100,
             ),

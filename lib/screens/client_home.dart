@@ -2,7 +2,6 @@ import 'package:fixlit/services/apis.dart';
 import 'package:fixlit/utils/pallate.dart';
 import 'package:fixlit/widgets/client_home/catagory_card.dart';
 import 'package:fixlit/widgets/client_home/upper_catagory_header.dart';
-import 'package:fixlit/widgets/drawers.dart';
 import 'package:fixlit/widgets/client_home/main_header.dart';
 import 'package:flutter/material.dart';
 
@@ -23,11 +22,11 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const MyDrawer(),
       body: Column(
         children: [
           CustomAppBar(
             btn: false,
+            isSearch: true,
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,

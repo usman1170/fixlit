@@ -20,6 +20,7 @@ class _SearchedCatagoryState extends State<SearchedCatagory> {
         children: [
           CustomAppBar(
             btn: true,
+            isSearch: false,
           ),
           const SizedBox(
             height: 15,
@@ -80,7 +81,7 @@ class _SearchedCatagoryState extends State<SearchedCatagory> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(
-                                  CupertinoIcons.text_append,
+                                  CupertinoIcons.chat_bubble_2,
                                   color: Colors.white,
                                 ),
                                 SizedBox(
