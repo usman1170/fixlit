@@ -1,92 +1,29 @@
-import 'package:fixlit/screens/chat/chat_screen.dart';
+import 'package:fixlit/screens/client_home.dart';
 import 'package:fixlit/screens/profile/client_profile.dart';
 import 'package:fixlit/services/apis.dart';
 import 'package:fixlit/utils/pallate.dart';
 import 'package:fixlit/widgets/bottom_navigation.dart';
-import 'package:fixlit/widgets/client_home/catagory_card.dart';
-import 'package:fixlit/widgets/client_home/upper_catagory_header.dart';
 import 'package:fixlit/widgets/client_home/main_header.dart';
 import 'package:flutter/material.dart';
 
-class ClientHomeScreen extends StatefulWidget {
-  const ClientHomeScreen({super.key});
+class ChatScreen extends StatefulWidget {
+  const ChatScreen({super.key});
 
   @override
-  State<ClientHomeScreen> createState() => _ClientHomeScreenState();
+  State<ChatScreen> createState() => _ChatScreenState();
 }
 
-class _ClientHomeScreenState extends State<ClientHomeScreen> {
-  bool homeScreen = true;
-  bool inboxScreen = false;
+class _ChatScreenState extends State<ChatScreen> {
+  bool homeScreen = false;
+  bool inboxScreen = true;
   bool profileScreen = false;
-
-  @override
-  void initState() {
-    Services.clientProfile();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
-          CustomAppBar(
-            btn: false,
-            isSearch: true,
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(
-                height: 14,
-              ),
-              const UpperCatagoryHeader(),
-              const SizedBox(
-                height: 18,
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 14),
-                    child: Text(
-                      "Populer Projects :",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Clrs.mainColor,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 14,
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 14),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      CatagoryCard(
-                        title: 'Plumbing',
-                        image: 'assets/imgs/bg2.jpg',
-                      ),
-                      CatagoryCard(
-                        title: 'Electrition',
-                        image: 'assets/imgs/bg3.jpg',
-                      ),
-                      CatagoryCard(
-                        title: 'Cleaning',
-                        image: 'assets/imgs/bg1.jpg',
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
+          CustomAppBar(btn: true, isSearch: false),
         ],
       ),
       bottomNavigationBar: Padding(
@@ -111,6 +48,13 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
                     inboxScreen = false;
                     profileScreen = false;
                   });
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ClientHomeScreen(),
+                    ),
+                  );
                 },
                 title: 'Home',
                 icon: Icons.home,
@@ -123,13 +67,6 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
                     inboxScreen = true;
                     profileScreen = false;
                   });
-
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ChatScreen(),
-                    ),
-                  );
                 },
                 title: 'Inbox',
                 icon: Icons.inbox,
