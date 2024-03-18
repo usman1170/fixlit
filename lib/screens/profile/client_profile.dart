@@ -4,6 +4,7 @@ import 'package:fixlit/models/client_model.dart';
 import 'package:fixlit/screens/chat/chat_screen.dart';
 import 'package:fixlit/screens/client_home.dart';
 import 'package:fixlit/screens/profile/client_edit.dart';
+import 'package:fixlit/services/apis.dart';
 import 'package:fixlit/utils/pallate.dart';
 import 'package:fixlit/widgets/bottom_navigation.dart';
 import 'package:fixlit/widgets/buttons.dart';
@@ -140,7 +141,7 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
   }
 
   Widget _topBuild() {
-    final user = widget.user;
+    final user = Services.client;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[

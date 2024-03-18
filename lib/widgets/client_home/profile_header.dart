@@ -39,10 +39,42 @@ class ProfileHeader extends StatelessWidget {
                   color: Colors.grey.shade100,
                 ),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
+                  borderRadius: BorderRadius.circular(75),
                   child: Image.network(
-                    Services.client.image,
+                    image,
                     fit: BoxFit.cover,
+                    loadingBuilder: (BuildContext context, Widget child,
+                        ImageChunkEvent? loadingProgress) {
+                      if (loadingProgress == null) {
+                        return child;
+                      } else {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded /
+                                    (loadingProgress.expectedTotalBytes ?? 1)
+                                : null,
+                          ),
+                        );
+                      }
+                    },
+                    errorBuilder: (BuildContext context, Object error,
+                        StackTrace? stackTrace) {
+                      return Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        child: Icon(
+                          Icons.person,
+                          size: 28,
+                          color: Clrs.mainColor,
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),

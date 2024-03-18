@@ -23,7 +23,7 @@ class _ClientEditProfileState extends State<ClientEditProfile> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final user = widget.user;
+    final user = Services.client;
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(

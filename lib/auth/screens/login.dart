@@ -8,7 +8,6 @@ import 'package:fixlit/auth/screens/forgotpass.dart';
 import 'package:fixlit/auth/screens/signup.dart';
 import 'package:fixlit/auth/widgets/loading_screen.dart';
 import 'package:fixlit/main.dart';
-import 'package:fixlit/screens/client_home.dart';
 import 'package:fixlit/widgets/dialogs.dart';
 import 'package:fixlit/widgets/grey_text.dart';
 import 'package:flutter/material.dart';
@@ -371,25 +370,26 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               InkWell(
                 onTap: () {
-                  try {
-                    _signWithGoogle().then((value) async {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ClientHomeScreen(),
-                        ),
-                      );
-                    });
-                  } catch (e) {
-                    setState(() {
-                      isLoading = false;
-                    });
-                    Dialogs().errorDialog(
-                      context,
-                      'Error Occured',
-                      "Something wents wrong",
-                    );
-                  }
+                  Dialogs.showMassage(context, "Not updated yet");
+                  // try {
+                  //   _signWithGoogle().then((value) async {
+                  //     Navigator.pushReplacement(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //         builder: (context) => const ClientHomeScreen(),
+                  //       ),
+                  //     );
+                  //   });
+                  // } catch (e) {
+                  //   setState(() {
+                  //     isLoading = false;
+                  //   });
+                  //   Dialogs().errorDialog(
+                  //     context,
+                  //     'Error Occured',
+                  //     "Something wents wrong",
+                  //   );
+                  // }
                 },
                 child: Container(
                   height: 55,
@@ -400,7 +400,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Dialogs.showMassage(context, "Not updated yet");
+                },
                 child: Container(
                   height: 55,
                   decoration: const BoxDecoration(
