@@ -1,3 +1,4 @@
+import 'package:fixlit/screens/client/all_catagory_page.dart';
 import 'package:fixlit/utils/pallate.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -29,14 +30,24 @@ class _UpperCatagoryHeaderState extends State<UpperCatagoryHeader> {
                     color: Clrs.mainColor,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 8),
-                  child: Text(
-                    "See all",
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.orange.shade700,
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SeeAllCatagoryScreen(),
+                        ));
+                  },
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                    child: Text(
+                      "See all",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.orange.shade700,
+                      ),
                     ),
                   ),
                 ),

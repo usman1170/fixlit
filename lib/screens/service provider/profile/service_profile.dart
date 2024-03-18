@@ -1,7 +1,7 @@
 import 'package:fixlit/auth/screens/forgotpass.dart';
 import 'package:fixlit/auth/widgets/auth_dialogs.dart';
 import 'package:fixlit/models/service_provider_model.dart';
-import 'package:fixlit/screens/profile/edit_profile.dart';
+import 'package:fixlit/screens/service%20provider/profile/edit_profile.dart';
 import 'package:fixlit/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 

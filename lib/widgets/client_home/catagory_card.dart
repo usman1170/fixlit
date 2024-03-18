@@ -1,4 +1,4 @@
-import 'package:fixlit/screens/catagory_card_result.dart';
+import 'package:fixlit/screens/client/catagory_card_result.dart';
 import 'package:flutter/material.dart';
 
 class CatagoryCard extends StatelessWidget {
@@ -19,6 +19,7 @@ class CatagoryCard extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => SearchedCatagory(
+                image: image,
                 catagory: title,
               ),
             ),

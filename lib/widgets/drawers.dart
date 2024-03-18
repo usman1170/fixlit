@@ -1,6 +1,6 @@
 import 'package:fixlit/auth/widgets/auth_dialogs.dart';
-import 'package:fixlit/screens/profile/client_profile.dart';
-import 'package:fixlit/screens/profile/service_profile.dart';
+import 'package:fixlit/screens/client/profile/client_profile.dart';
+import 'package:fixlit/screens/service%20provider/profile/service_profile.dart';
 import 'package:fixlit/services/apis.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

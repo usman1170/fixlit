@@ -1,13 +1,9 @@
 import 'package:fixlit/auth/screens/forgotpass.dart';
 import 'package:fixlit/auth/widgets/auth_dialogs.dart';
 import 'package:fixlit/models/client_model.dart';
-import 'package:fixlit/screens/chat/chat_screen.dart';
-import 'package:fixlit/screens/client_home.dart';
-import 'package:fixlit/screens/profile/client_edit.dart';
+import 'package:fixlit/screens/client/profile/client_edit.dart';
 import 'package:fixlit/services/apis.dart';
 import 'package:fixlit/utils/pallate.dart';
-import 'package:fixlit/widgets/bottom_navigation.dart';
-import 'package:fixlit/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 
 class ClientProfileScreen extends StatefulWidget {
@@ -26,13 +22,10 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: Clrs.mainColor,
       appBar: AppBar(
-        leading: const BackPopButton(
-          bgcolor: Colors.blue,
-          color: Colors.white,
-        ),
-        backgroundColor: Colors.blue,
+        leading: Container(),
+        backgroundColor: Clrs.mainColor,
         title: const Text(
           "Profile",
           style: TextStyle(
@@ -66,77 +59,77 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        color: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 12, left: 12, right: 12),
-          child: Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-            ),
-            height: 62,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              color: Clrs.mainColor,
-              borderRadius: BorderRadius.circular(30),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                BottomSheetButton(
-                  ontap: () {
-                    setState(() {
-                      homeScreen = true;
-                      inboxScreen = false;
-                      profileScreen = false;
-                    });
+      // bottomNavigationBar: Container(
+      //   color: Colors.white,
+      //   child: Padding(
+      //     padding: const EdgeInsets.only(bottom: 12, left: 12, right: 12),
+      //     child: Container(
+      //       padding: const EdgeInsets.symmetric(
+      //         horizontal: 16,
+      //       ),
+      //       height: 62,
+      //       width: MediaQuery.of(context).size.width,
+      //       decoration: BoxDecoration(
+      //         color: Clrs.mainColor,
+      //         borderRadius: BorderRadius.circular(30),
+      //       ),
+      //       child: Row(
+      //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //         children: [
+      //           BottomSheetButton(
+      //             ontap: () {
+      //               setState(() {
+      //                 homeScreen = true;
+      //                 inboxScreen = false;
+      //                 profileScreen = false;
+      //               });
 
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ClientHomeScreen(),
-                      ),
-                    );
-                  },
-                  title: 'Home',
-                  icon: Icons.home,
-                  color: homeScreen ? Colors.orange : Clrs.mainColor,
-                ),
-                BottomSheetButton(
-                  ontap: () {
-                    setState(() {
-                      homeScreen = false;
-                      inboxScreen = true;
-                      profileScreen = false;
-                    });
+      //               Navigator.push(
+      //                 context,
+      //                 MaterialPageRoute(
+      //                   builder: (context) => const ClientHomeScreen(),
+      //                 ),
+      //               );
+      //             },
+      //             title: 'Home',
+      //             icon: Icons.home,
+      //             color: homeScreen ? Colors.orange : Clrs.mainColor,
+      //           ),
+      //           BottomSheetButton(
+      //             ontap: () {
+      //               setState(() {
+      //                 homeScreen = false;
+      //                 inboxScreen = true;
+      //                 profileScreen = false;
+      //               });
 
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ChatScreen(),
-                        ));
-                  },
-                  title: 'Inbox',
-                  icon: Icons.inbox,
-                  color: inboxScreen ? Colors.orange : Clrs.mainColor,
-                ),
-                BottomSheetButton(
-                  ontap: () {
-                    setState(() {
-                      homeScreen = false;
-                      inboxScreen = false;
-                      profileScreen = true;
-                    });
-                  },
-                  title: 'Profile',
-                  icon: Icons.person,
-                  color: profileScreen ? Colors.orange : Clrs.mainColor,
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+      //               Navigator.push(
+      //                   context,
+      //                   MaterialPageRoute(
+      //                     builder: (context) => ChatScreen(),
+      //                   ));
+      //             },
+      //             title: 'Inbox',
+      //             icon: Icons.inbox,
+      //             color: inboxScreen ? Colors.orange : Clrs.mainColor,
+      //           ),
+      //           BottomSheetButton(
+      //             ontap: () {
+      //               setState(() {
+      //                 homeScreen = false;
+      //                 inboxScreen = false;
+      //                 profileScreen = true;
+      //               });
+      //             },
+      //             title: 'Profile',
+      //             icon: Icons.person,
+      //             color: profileScreen ? Colors.orange : Clrs.mainColor,
+      //           ),
+      //         ],
+      //       ),
+      //     ),
+      //   ),
+      // ),
     );
   }
 
