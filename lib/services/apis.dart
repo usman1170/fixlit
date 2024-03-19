@@ -21,16 +21,16 @@ class Services {
       id: user.uid,
       email: user.email.toString(),
       createdAt: date,
-      role: user.photoURL.toString(),
+      role: "client",
     );
-    await firestore.collection("p_user").doc(user.uid).set(
+    await firestore.collection("user").doc(user.uid).set(
           pUser.toJson(),
         );
   }
 
   //update profile
   static Future<void> updateProfile() async {
-    await firestore.collection("p_user").doc(user.uid).update({
+    await firestore.collection("user").doc(user.uid).update({
       "name": me.name,
       "email": me.email,
     });
@@ -70,19 +70,19 @@ class Services {
 //   }
 
 // for getting my user
-  static Stream<QuerySnapshot<Map<String, dynamic>>> getMyChilds() {
-    return firestore
-        .collection("p_user")
-        .doc(user.uid)
-        .collection("my_childs")
-        .snapshots();
-  }
+  // static Stream<QuerySnapshot<Map<String, dynamic>>> getMyChilds() {
+  //   return firestore
+  //       .collection("p_user")
+  //       .doc(user.uid)
+  //       .collection("my_childs")
+  //       .snapshots();
+  // }
 
   // get my profile
   static UserModel me = UserModel(
     name: "Name",
     id: user.uid,
-    email: "Email",
+    email: user.email!,
     createdAt: "createdAt",
     role: "null",
   );

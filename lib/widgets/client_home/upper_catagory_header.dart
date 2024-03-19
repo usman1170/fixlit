@@ -73,7 +73,7 @@ class _UpperCatagoryHeaderState extends State<UpperCatagoryHeader> {
                 icon: CupertinoIcons.car,
               ),
               CatagoryWidget(
-                title: "Plumber",
+                title: "Plumbing",
                 icon: Icons.plumbing,
               ),
               CatagoryWidget(

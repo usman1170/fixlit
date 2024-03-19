@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:fixlit/auth/screens/login.dart';
 import 'package:fixlit/auth/screens/veify.dart';
 import 'package:fixlit/firebase_options.dart';
+import 'package:fixlit/routes.dart';
 import 'package:fixlit/screens/splash.dart';
 import 'package:fixlit/screens/user_decider.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +30,9 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
+      routes: {
+        loginroute: (context) => const LoginScreen(),
+      },
       debugShowCheckedModeBanner: false,
       home: const SplashScreen(),
     );

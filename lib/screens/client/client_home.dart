@@ -50,7 +50,7 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
                   ),
                   const UpperCatagoryHeader(),
                   const SizedBox(
-                    height: 18,
+                    height: 20,
                   ),
                   Row(
                     children: [
@@ -68,7 +68,7 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
                     ],
                   ),
                   const SizedBox(
-                    height: 14,
+                    height: 15,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
@@ -104,8 +104,8 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
 
   Widget buildIndicator() => AnimatedSmoothIndicator(
         effect: ExpandingDotsEffect(
-          dotWidth: 12,
-          dotHeight: 12,
+          dotWidth: 15,
+          dotHeight: 6,
           activeDotColor: Clrs.mainColor,
         ),
         activeIndex: activeIndex,

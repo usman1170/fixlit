@@ -15,13 +15,24 @@ class UserDeciderScreen extends StatefulWidget {
 
 class _UserDeciderScreenState extends State<UserDeciderScreen> {
   @override
+  void dispose() {
+    Services.me.role = "";
+    setState(() {});
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: Services.getMyProfile(),
       builder: (context, snapshot) {
-        if (Services.me.role == "client") {
+        final role = Services.me.role;
+        print("========================");
+        print(role);
+        print("========================");
+        if (role == "client") {
           return const ClientBottomNavigationBar();
-        } else if (Services.me.role == "serviceProvider") {
+        } else if (role == "serviceProvider") {
           return const ServiceBottomNavigationBar();
         } else {
           return const LoginScreen();

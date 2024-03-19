@@ -552,10 +552,13 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
           ),
           items: <String>[
             'catagory',
-            'Plumber',
-            'Electrician',
+            'Plumbing',
+            'Electritian',
+            'Cleaning',
+            'Painting',
             'Lawn Mowing',
-            'Driver'
+            'Driver',
+            'AC Service'
           ].map((String value) {
             return DropdownMenuItem<String>(
               value: value,

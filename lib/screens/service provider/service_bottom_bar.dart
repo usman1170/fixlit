@@ -24,7 +24,7 @@ class _ServiceBottomNavigationBarState
   ];
   @override
   void initState() {
-    Services.getMyProfile();
+    Services.serviceProfile();
     super.initState();
   }
 

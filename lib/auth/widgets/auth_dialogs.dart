@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fixlit/auth/screens/login.dart';
+import 'package:fixlit/routes.dart';
 import 'package:flutter/material.dart';
 
 class AuthDialogs {
@@ -38,12 +38,8 @@ class AuthDialogs {
                 TextButton(
                   onPressed: () async {
                     await FirebaseAuth.instance.signOut().then(
-                          (value) => Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const LoginScreen(),
-                            ),
-                          ),
+                          (value) => Navigator.pushNamedAndRemoveUntil(
+                              context, loginroute, (route) => false),
                         );
                   },
                   child: const Text('Logout'),

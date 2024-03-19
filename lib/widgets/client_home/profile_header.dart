@@ -12,6 +12,7 @@ class ProfileHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final image = Services.client.image;
+    final name = Services.client.name;
     return Row(
       children: [
         isButton
@@ -97,6 +98,7 @@ class ProfileHeader extends StatelessWidget {
               width: 20,
             ),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   "Good Morning!",
@@ -106,7 +108,7 @@ class ProfileHeader extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "Usman Ghani",
+                  name == "" ? "Usman Ghani" : name.toUpperCase(),
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.grey.shade100,

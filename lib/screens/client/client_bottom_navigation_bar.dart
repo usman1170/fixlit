@@ -23,7 +23,7 @@ class _ClientBottomNavigationBarState extends State<ClientBottomNavigationBar> {
   ];
   @override
   void initState() {
-    Services.getMyProfile();
+    Services.clientProfile();
     super.initState();
   }
 

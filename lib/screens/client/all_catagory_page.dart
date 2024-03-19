@@ -43,7 +43,7 @@ class _SeeAllCatagoryScreenState extends State<SeeAllCatagoryScreen> {
                     image: 'assets/imgs/driver.jpg',
                   ),
                   AllCatagoryCard(
-                    title: 'Painter',
+                    title: 'Painting',
                     image: 'assets/imgs/paint.jpg',
                   ),
                 ],
@@ -55,7 +55,7 @@ class _SeeAllCatagoryScreenState extends State<SeeAllCatagoryScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   AllCatagoryCard(
-                    title: 'Cleaner',
+                    title: 'Cleaning',
                     image: 'assets/imgs/clean.jpeg',
                   ),
                   AllCatagoryCard(
