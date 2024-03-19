@@ -108,7 +108,7 @@ class ProfileHeader extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  name == "" ? "Usman Ghani" : name.toUpperCase(),
+                  name == "" ? "Hey There..." : name.toUpperCase(),
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.grey.shade100,

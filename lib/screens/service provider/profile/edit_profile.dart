@@ -197,7 +197,7 @@ class _ServiceEditProfileScreenState extends State<ServiceEditProfileScreen> {
                             ),
                             TextFormField(
                               onSaved: (value) =>
-                                  Services.me.name = value ?? "",
+                                  Services.serviceProvider.name = value ?? "",
                               validator: (val) => val != null && val.isNotEmpty
                                   ? null
                                   : "Required Field",
@@ -227,7 +227,8 @@ class _ServiceEditProfileScreenState extends State<ServiceEditProfileScreen> {
                               height: 25,
                             ),
                             TextFormField(
-                              onSaved: (value) => Services.me.email = value!,
+                              onSaved: (value) =>
+                                  Services.serviceProvider.email = value!,
                               validator: (val) => val != null && val.isNotEmpty
                                   ? null
                                   : "Required Field",
@@ -272,7 +273,7 @@ class _ServiceEditProfileScreenState extends State<ServiceEditProfileScreen> {
               FocusScope.of(context).unfocus();
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
-                Services.updateProfile().then((value) {
+                Services.serviceUpdateProfile().then((value) {
                   setState(() {
                     isLoading = false;
                   });

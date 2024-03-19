@@ -4,10 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SearchedCatagory extends StatefulWidget {
-  const SearchedCatagory(
-      {super.key, required this.catagory, required this.image});
+  const SearchedCatagory({super.key, required this.catagory});
   final String catagory;
-  final String image;
 
   @override
   State<SearchedCatagory> createState() => _SearchedCatagoryState();

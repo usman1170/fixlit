@@ -68,7 +68,7 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
                     ],
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 16,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
@@ -116,7 +116,8 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(25),
-            // border: Border.all(color: Clrs.mainColor),
+            border:
+                Border.all(color: Clrs.mainColor.withOpacity(.35), width: 4),
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(25),

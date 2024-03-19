@@ -23,17 +23,39 @@ class Services {
       createdAt: date,
       role: "client",
     );
-    await firestore.collection("user").doc(user.uid).set(
+    await firestore.collection("users").doc(user.uid).set(
           pUser.toJson(),
         );
   }
 
-  //update profile
-  static Future<void> updateProfile() async {
-    await firestore.collection("user").doc(user.uid).update({
-      "name": me.name,
-      "email": me.email,
+// client update profile
+  static Future<void> mainUpdateProfile(String name, email) async {
+    await firestore.collection("users").doc(client.id).update({
+      "name": name,
+      "email": email,
     });
+  }
+
+  // client update profile
+  static Future<void> clientUpdateProfile() async {
+    await firestore.collection("client").doc(client.id).update({
+      "name": client.name,
+      "email": client.email,
+    });
+    mainUpdateProfile(client.name, client.email);
+  }
+
+  // service update profile
+  static Future<void> serviceUpdateProfile() async {
+    await firestore
+        .collection("service_provider")
+        .doc(serviceProvider.id)
+        .update({
+      "name": serviceProvider.name,
+      "email": serviceProvider.email,
+    });
+
+    mainUpdateProfile(serviceProvider.name, serviceProvider.email);
   }
 
 //forget password

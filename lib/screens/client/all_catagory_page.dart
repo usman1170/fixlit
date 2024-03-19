@@ -64,6 +64,18 @@ class _SeeAllCatagoryScreenState extends State<SeeAllCatagoryScreen> {
                   ),
                 ],
               ),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  AllCatagoryCard(
+                    title: 'AC Service',
+                    image: 'assets/imgs/ac.webp',
+                  ),
+                ],
+              ),
             ],
           )),
         ],
@@ -92,7 +104,6 @@ class AllCatagoryCard extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => SearchedCatagory(
-                image: image,
                 catagory: title,
               ),
             ),

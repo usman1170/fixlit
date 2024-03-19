@@ -19,7 +19,6 @@ class CatagoryCard extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => SearchedCatagory(
-                image: image,
                 catagory: title,
               ),
             ),

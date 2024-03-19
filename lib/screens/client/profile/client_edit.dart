@@ -197,7 +197,7 @@ class _ClientEditProfileState extends State<ClientEditProfile> {
                             ),
                             TextFormField(
                               onSaved: (value) =>
-                                  Services.me.name = value ?? "",
+                                  Services.client.name = value ?? "",
                               validator: (val) => val != null && val.isNotEmpty
                                   ? null
                                   : "Required Field",
@@ -228,7 +228,8 @@ class _ClientEditProfileState extends State<ClientEditProfile> {
                               height: 25,
                             ),
                             TextFormField(
-                              onSaved: (value) => Services.me.email = value!,
+                              onSaved: (value) =>
+                                  Services.client.email = value!,
                               validator: (val) => val != null && val.isNotEmpty
                                   ? null
                                   : "Required Field",
@@ -271,10 +272,14 @@ class _ClientEditProfileState extends State<ClientEditProfile> {
           child: FloatingActionButton.extended(
             backgroundColor: Clrs.mainColor,
             onPressed: () async {
+              print(Services.client.name);
+              setState(() {
+                isLoading = true;
+              });
               FocusScope.of(context).unfocus();
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
-                Services.updateProfile().then((value) {
+                Services.clientUpdateProfile().then((value) {
                   setState(() {
                     isLoading = false;
                   });

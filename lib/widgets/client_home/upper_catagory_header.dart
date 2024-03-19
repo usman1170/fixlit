@@ -1,4 +1,5 @@
 import 'package:fixlit/screens/client/all_catagory_page.dart';
+import 'package:fixlit/screens/client/catagory_card_result.dart';
 import 'package:fixlit/utils/pallate.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -96,20 +97,28 @@ class CatagoryWidget extends StatelessWidget {
   });
   final String title;
   final IconData icon;
-  // final String title;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          height: 52,
-          width: 52,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(color: Colors.orange.shade600),
-          ),
-          child: Center(
-            child: Icon(icon),
+        InkWell(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SearchedCatagory(catagory: title),
+                ));
+          },
+          child: Container(
+            height: 52,
+            width: 52,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.orange.shade600),
+            ),
+            child: Center(
+              child: Icon(icon),
+            ),
           ),
         ),
         const SizedBox(
