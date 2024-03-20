@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, use_build_context_synchronously
+// ignore_for_file: prefer_const_constructors, use_build_context_synchronously, must_be_immutable
 
 import 'dart:io';
 import 'package:fixlit/models/service_provider_model.dart';
@@ -19,19 +19,20 @@ class ServiceEditProfileScreen extends StatefulWidget {
 
 class _ServiceEditProfileScreenState extends State<ServiceEditProfileScreen> {
   String? _image;
+  // String? _license;
 
   bool isLoading = false;
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final user = widget.user;
+    final user = Services.serviceProvider;
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         appBar: AppBar(
           leading: BackPopButton(
             color: Colors.blue.shade700,
-            bgcolor: Colors.white,
+            bgcolor: Colors.blue.shade50.withOpacity(.6),
           ),
           title: Text(
             "Profile Update",
@@ -65,7 +66,7 @@ class _ServiceEditProfileScreenState extends State<ServiceEditProfileScreen> {
                 child: Center(
                   child: Padding(
                     padding:
-                        const EdgeInsets.only(top: 40, left: 15, right: 15),
+                        const EdgeInsets.only(top: 20, left: 15, right: 15),
                     child: ListView(
                       children: [
                         Column(
@@ -74,8 +75,8 @@ class _ServiceEditProfileScreenState extends State<ServiceEditProfileScreen> {
                               children: [
                                 _image != null
                                     ? Container(
-                                        height: 160,
-                                        width: 160,
+                                        height: 140,
+                                        width: 140,
                                         decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
@@ -98,7 +99,7 @@ class _ServiceEditProfileScreenState extends State<ServiceEditProfileScreen> {
                                                 ),
                                                 child: const Icon(
                                                   Icons.person,
-                                                  size: 50,
+                                                  size: 45,
                                                   color: Colors.white,
                                                 ),
                                               );
@@ -107,8 +108,8 @@ class _ServiceEditProfileScreenState extends State<ServiceEditProfileScreen> {
                                         ),
                                       )
                                     : Container(
-                                        height: 160,
-                                        width: 160,
+                                        height: 140,
+                                        width: 140,
                                         decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
@@ -193,11 +194,10 @@ class _ServiceEditProfileScreenState extends State<ServiceEditProfileScreen> {
                               ),
                             ),
                             SizedBox(
-                              height: 35,
+                              height: 20,
                             ),
                             TextFormField(
-                              onSaved: (value) =>
-                                  Services.serviceProvider.name = value ?? "",
+                              onSaved: (value) => user.name = value ?? "",
                               validator: (val) => val != null && val.isNotEmpty
                                   ? null
                                   : "Required Field",
@@ -224,39 +224,159 @@ class _ServiceEditProfileScreenState extends State<ServiceEditProfileScreen> {
                               ),
                             ),
                             SizedBox(
-                              height: 25,
+                              height: 15,
                             ),
                             TextFormField(
-                              onSaved: (value) =>
-                                  Services.serviceProvider.email = value!,
+                              onSaved: (value) => user.city = value ?? "",
                               validator: (val) => val != null && val.isNotEmpty
                                   ? null
                                   : "Required Field",
-                              initialValue: user.email,
+                              initialValue: user.city,
                               decoration: InputDecoration(
-                                  label: const Text(
-                                    'Email',
-                                    style: TextStyle(color: Colors.black),
-                                  ),
-                                  prefixIcon: const Icon(Icons.info),
-                                  hintText: "Enter your Email",
-                                  prefixIconColor: Colors.blue,
-                                  hintStyle: const TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.grey,
-                                  ),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(20)),
-                                  focusedBorder: const OutlineInputBorder(
+                                label: const Text(
+                                  'City',
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                prefixIcon: Icon(Icons.location_city),
+                                hintText: "Enter your City",
+                                prefixIconColor: Colors.blue,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                                focusedBorder: OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(30)),
-                                    borderSide: BorderSide(color: Colors.blue),
-                                  ),
-                                  contentPadding: const EdgeInsets.only(
-                                    top: 18,
-                                    bottom: 18,
-                                    left: 10,
-                                  )),
+                                    borderSide: BorderSide(color: Colors.blue)),
+                                contentPadding: EdgeInsets.only(
+                                  top: 18,
+                                  bottom: 18,
+                                  left: 10,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            TextFormField(
+                              onSaved: (value) => user.address = value ?? "",
+                              validator: (val) => val != null && val.isNotEmpty
+                                  ? null
+                                  : "Required Field",
+                              initialValue: user.address,
+                              decoration: InputDecoration(
+                                label: const Text(
+                                  'Address',
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                prefixIcon: Icon(Icons.person),
+                                hintText: "Enter Address here",
+                                prefixIconColor: Colors.blue,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(30)),
+                                    borderSide: BorderSide(color: Colors.blue)),
+                                contentPadding: EdgeInsets.only(
+                                  top: 18,
+                                  bottom: 18,
+                                  left: 10,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            TextFormField(
+                              onSaved: (value) => user.phone = value ?? "",
+                              validator: (val) => val != null && val.isNotEmpty
+                                  ? null
+                                  : "Required Field",
+                              initialValue: user.phone,
+                              decoration: InputDecoration(
+                                label: const Text(
+                                  'Phone no',
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                prefixIcon: Icon(Icons.person),
+                                hintText: "Enter Phone no here",
+                                prefixIconColor: Colors.blue,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(30)),
+                                    borderSide: BorderSide(color: Colors.blue)),
+                                contentPadding: EdgeInsets.only(
+                                  top: 18,
+                                  bottom: 18,
+                                  left: 10,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            TextFormField(
+                              onSaved: (value) => user.timings = value ?? "",
+                              validator: (val) => val != null && val.isNotEmpty
+                                  ? null
+                                  : "Required Field",
+                              initialValue: user.timings,
+                              decoration: InputDecoration(
+                                label: const Text(
+                                  'Scheduling',
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                prefixIcon: Icon(Icons.punch_clock),
+                                hintText: "Update your Scheduling here",
+                                prefixIconColor: Colors.blue,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(30)),
+                                    borderSide: BorderSide(color: Colors.blue)),
+                                contentPadding: EdgeInsets.only(
+                                  top: 18,
+                                  bottom: 18,
+                                  left: 10,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            TextFormField(
+                              onSaved: (value) => user.bio = value ?? "",
+                              validator: (val) => val != null && val.isNotEmpty
+                                  ? null
+                                  : "Required Field",
+                              initialValue: user.bio,
+                              maxLines: 4,
+                              decoration: InputDecoration(
+                                label: const Text(
+                                  'Description',
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                prefixIcon: Icon(Icons.text_format),
+                                hintText:
+                                    "Enter your bio and explain your experince here",
+                                prefixIconColor: Colors.blue,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(30)),
+                                    borderSide: BorderSide(color: Colors.blue)),
+                                contentPadding: EdgeInsets.only(
+                                  top: 18,
+                                  bottom: 18,
+                                  left: 10,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15,
                             ),
                           ],
                         ),
@@ -273,6 +393,9 @@ class _ServiceEditProfileScreenState extends State<ServiceEditProfileScreen> {
               FocusScope.of(context).unfocus();
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
+                setState(() {
+                  isLoading = true;
+                });
                 Services.serviceUpdateProfile().then((value) {
                   setState(() {
                     isLoading = false;

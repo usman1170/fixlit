@@ -15,7 +15,7 @@ class _SeeAllCatagoryScreenState extends State<SeeAllCatagoryScreen> {
     return Scaffold(
       body: Column(
         children: [
-          CustomAppBar(btn: true, isSearch: true),
+          ClientCustomAppBar(btn: true, isSearch: true),
           Expanded(
               child: ListView(
             children: const [

@@ -5,8 +5,8 @@ import 'package:fixlit/utils/pallate.dart';
 import 'package:fixlit/widgets/client_home/profile_header.dart';
 import 'package:flutter/material.dart';
 
-class CustomAppBar extends StatelessWidget {
-  CustomAppBar({required this.btn, required this.isSearch, super.key});
+class ClientCustomAppBar extends StatelessWidget {
+  ClientCustomAppBar({required this.btn, required this.isSearch, super.key});
   bool btn;
   bool isSearch = false;
 

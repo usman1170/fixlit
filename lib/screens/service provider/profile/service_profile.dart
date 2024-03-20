@@ -1,8 +1,9 @@
 import 'package:fixlit/auth/screens/forgotpass.dart';
 import 'package:fixlit/auth/widgets/auth_dialogs.dart';
 import 'package:fixlit/models/service_provider_model.dart';
+import 'package:fixlit/screens/service%20provider/image_view.dart';
 import 'package:fixlit/screens/service%20provider/profile/edit_profile.dart';
-import 'package:fixlit/widgets/buttons.dart';
+import 'package:fixlit/services/apis.dart';
 import 'package:flutter/material.dart';
 
 class ServiceProfileScreen extends StatefulWidget {
@@ -19,10 +20,7 @@ class _ServiceProfileScreenState extends State<ServiceProfileScreen> {
     return Scaffold(
       backgroundColor: Colors.blue,
       appBar: AppBar(
-        leading: const BackPopButton(
-          bgcolor: Colors.blue,
-          color: Colors.white,
-        ),
+        leading: const SizedBox(),
         backgroundColor: Colors.blue,
         title: const Text(
           "Service Provider",
@@ -61,7 +59,7 @@ class _ServiceProfileScreenState extends State<ServiceProfileScreen> {
   }
 
   Widget _topBuild() {
-    final user = widget.user;
+    final user = Services.serviceProvider;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -73,41 +71,50 @@ class _ServiceProfileScreenState extends State<ServiceProfileScreen> {
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(75),
-            child: Image.network(
-              user.image,
-              fit: BoxFit.cover,
-              loadingBuilder: (BuildContext context, Widget child,
-                  ImageChunkEvent? loadingProgress) {
-                if (loadingProgress == null) {
-                  return child;
-                } else {
-                  return Center(
-                    child: CircularProgressIndicator(
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ImageViewScreen(image: user.image),
+                    ));
+              },
+              child: Image.network(
+                user.image,
+                fit: BoxFit.cover,
+                loadingBuilder: (BuildContext context, Widget child,
+                    ImageChunkEvent? loadingProgress) {
+                  if (loadingProgress == null) {
+                    return child;
+                  } else {
+                    return Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                (loadingProgress.expectedTotalBytes ?? 1)
+                            : null,
+                      ),
+                    );
+                  }
+                },
+                errorBuilder: (BuildContext context, Object error,
+                    StackTrace? stackTrace) {
+                  return Container(
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
                       color: Colors.white,
-                      value: loadingProgress.expectedTotalBytes != null
-                          ? loadingProgress.cumulativeBytesLoaded /
-                              (loadingProgress.expectedTotalBytes ?? 1)
-                          : null,
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: const Icon(
+                      Icons.person,
+                      size: 50,
+                      color: Colors.blue,
                     ),
                   );
-                }
-              },
-              errorBuilder:
-                  (BuildContext context, Object error, StackTrace? stackTrace) {
-                return Container(
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: const Icon(
-                    Icons.person,
-                    size: 50,
-                    color: Colors.blue,
-                  ),
-                );
-              },
+                },
+              ),
             ),
           ),
         ),

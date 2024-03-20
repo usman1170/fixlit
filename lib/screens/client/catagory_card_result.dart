@@ -18,7 +18,7 @@ class _SearchedCatagoryState extends State<SearchedCatagory> {
     return Scaffold(
       body: Column(
         children: [
-          CustomAppBar(
+          ClientCustomAppBar(
             btn: true,
             isSearch: false,
           ),

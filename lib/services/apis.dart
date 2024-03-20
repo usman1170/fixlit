@@ -45,6 +45,15 @@ class Services {
     mainUpdateProfile(client.name, client.email);
   }
 
+  static Future<void> updateStatus(bool status) async {
+    await firestore
+        .collection("service_provider")
+        .doc(serviceProvider.id)
+        .update({
+      "available": status,
+    });
+  }
+
   // service update profile
   static Future<void> serviceUpdateProfile() async {
     await firestore
@@ -52,7 +61,12 @@ class Services {
         .doc(serviceProvider.id)
         .update({
       "name": serviceProvider.name,
-      "email": serviceProvider.email,
+      "address": serviceProvider.address,
+      "phone": serviceProvider.phone,
+      "timings": serviceProvider.timings,
+      "bio": serviceProvider.bio,
+      "catagory": serviceProvider.catagory,
+      "city": serviceProvider.city,
     });
 
     mainUpdateProfile(serviceProvider.name, serviceProvider.email);
@@ -99,6 +113,15 @@ class Services {
   //       .collection("my_childs")
   //       .snapshots();
   // }
+  static Future<void> userCheck() async {
+    await firestore.collection("users").doc(user.uid).get().then((user) async {
+      if (user.exists) {
+        me = UserModel.fromJson(user.data()!);
+      } else {
+        await createUser().then((value) => getMyProfile());
+      }
+    });
+  }
 
   // get my profile
   static UserModel me = UserModel(
@@ -143,6 +166,13 @@ class Services {
     image: "null",
     catagory: '',
     userCatagory: '',
+    address: '',
+    bio: '',
+    phone: '',
+    timings: '',
+    license: '',
+    available: false,
+    city: '',
   );
   static Future<void> serviceProfile() async {
     await firestore
@@ -172,6 +202,19 @@ class Services {
         .doc(user.uid)
         .update({
       "image": me.role == "client" ? client.image : serviceProvider.image,
+    });
+  }
+
+  //update profile pic
+  static Future<void> updateLicense(File file) async {
+    final ext = file.path.split(".").first;
+    final ref = storage.ref().child("license/${user.uid}.$ext");
+    await ref
+        .putFile(file, SettableMetadata(contentType: "image/$ext"))
+        .then((p0) {});
+    serviceProvider.license = await ref.getDownloadURL();
+    await firestore.collection("service_provider").doc(user.uid).update({
+      "license": serviceProvider.license,
     });
   }
 }

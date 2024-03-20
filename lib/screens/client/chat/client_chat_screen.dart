@@ -18,7 +18,7 @@ class _ClientChatScreenState extends State<ClientChatScreen> {
     return Scaffold(
       body: Column(
         children: [
-          CustomAppBar(btn: false, isSearch: false),
+          ClientCustomAppBar(btn: false, isSearch: false),
         ],
       ),
       // bottomNavigationBar: Padding(

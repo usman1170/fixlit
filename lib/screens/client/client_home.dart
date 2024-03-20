@@ -36,7 +36,7 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
     return Scaffold(
       body: Column(
         children: [
-          CustomAppBar(
+          ClientCustomAppBar(
             btn: false,
             isSearch: true,
           ),

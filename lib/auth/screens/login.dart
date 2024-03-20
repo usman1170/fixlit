@@ -1,17 +1,14 @@
 // ignore_for_file: use_build_context_synchronously
-
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fixlit/auth/screens/forgotpass.dart';
 import 'package:fixlit/auth/screens/signup.dart';
 import 'package:fixlit/auth/widgets/loading_screen.dart';
 import 'package:fixlit/main.dart';
+import 'package:fixlit/utils/pallate.dart';
 import 'package:fixlit/widgets/dialogs.dart';
 import 'package:fixlit/widgets/grey_text.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -29,38 +26,6 @@ class _LoginScreenState extends State<LoginScreen> {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   bool isLoading = false;
   bool obscure = true;
-  Future<UserCredential?> _signWithGoogle() async {
-    try {
-      setState(() {
-        isLoading = true;
-      });
-      await InternetAddress.lookup("google.com");
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-      final GoogleSignInAuthentication? googleAuth =
-          await googleUser?.authentication;
-      final credentials = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
-      );
-      setState(() {
-        isLoading = false;
-      });
-      return await FirebaseAuth.instance.signInWithCredential(credentials);
-    } catch (e) {
-      setState(() {
-        isLoading = false;
-      });
-      Dialogs().errorDialog(
-        context,
-        'Error Occured',
-        "Somrthing wents wrong (check internet)",
-      );
-    }
-    setState(() {
-      isLoading = false;
-    });
-    return null;
-  }
 
   @override
   void initState() {
@@ -99,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 body: Stack(
                   children: [
                     Positioned(
-                      top: mq.height * .08,
+                      top: mq.height * .1,
                       child: _mainTopBuild(),
                     ),
                     Positioned(
@@ -204,7 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         _otherLogin(),
         SizedBox(
-          height: mq.height * .02,
+          height: mq.height * .025,
         ),
       ],
     );
@@ -359,61 +324,26 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _otherLogin() {
     return Center(
-      child: Column(
-        children: [
-          greyText("Or login with"),
-          const SizedBox(
-            height: 15,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              InkWell(
-                onTap: () {
-                  Dialogs.showMassage(context, "Not updated yet");
-                  // try {
-                  //   _signWithGoogle().then((value) async {
-                  //     Navigator.pushReplacement(
-                  //       context,
-                  //       MaterialPageRoute(
-                  //         builder: (context) => const ClientHomeScreen(),
-                  //       ),
-                  //     );
-                  //   });
-                  // } catch (e) {
-                  //   setState(() {
-                  //     isLoading = false;
-                  //   });
-                  //   Dialogs().errorDialog(
-                  //     context,
-                  //     'Error Occured',
-                  //     "Something wents wrong",
-                  //   );
-                  // }
-                },
-                child: Container(
-                  height: 55,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                  ),
-                  child: Image.asset("assets/imgs/g.png"),
+      child: SizedBox(
+        width: 250,
+        child: Center(
+          child: Column(children: [
+            Text.rich(
+              TextSpan(children: [
+                const TextSpan(
+                  text: "By loggin in it means yor have agreed to our  ",
+                  style: TextStyle(color: Colors.black54),
                 ),
-              ),
-              InkWell(
-                onTap: () {
-                  Dialogs.showMassage(context, "Not updated yet");
-                },
-                child: Container(
-                  height: 55,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                  ),
-                  child: Image.asset("assets/imgs/f.png"),
-                ),
-              ),
-            ],
-          )
-        ],
+                TextSpan(
+                  text: "Terms and Conditions",
+                  style: TextStyle(
+                      color: Clrs.mainColor, fontWeight: FontWeight.w500),
+                )
+              ]),
+              textAlign: TextAlign.center,
+            ),
+          ]),
+        ),
       ),
     );
   }

@@ -130,6 +130,13 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
         image: newUser.user!.photoURL ?? "",
         catagory: selectedCategory,
         userCatagory: userType,
+        address: '',
+        bio: '',
+        phone: '',
+        timings: '',
+        license: '',
+        available: false,
+        city: '',
       );
       await Services.firestore
           .collection("service_provider")
@@ -517,11 +524,11 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
         ),
         greyText("Please Enter your Email and password"),
         SizedBox(
-          height: mq.height * .02,
+          height: mq.height * .018,
         ),
         _inputField(_name, isName: true),
         SizedBox(
-          height: mq.height * .02,
+          height: mq.height * .018,
         ),
         DropdownButtonFormField<String>(
           value: selectedCategory,
@@ -567,15 +574,15 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
           }).toList(),
         ),
         SizedBox(
-          height: mq.height * .02,
+          height: mq.height * .018,
         ),
         _inputField(_email),
         SizedBox(
-          height: mq.height * .02,
+          height: mq.height * .018,
         ),
         _inputField(_password, isPassword: true),
         SizedBox(
-          height: mq.height * .022,
+          height: mq.height * .020,
         ),
         _signupButton(() async {
           setState(() {
@@ -609,7 +616,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
           }
         }),
         SizedBox(
-          height: mq.height * .025,
+          height: mq.height * .022,
         ),
         InkWell(
           onTap: () {
@@ -643,7 +650,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
           ),
         ),
         SizedBox(
-          height: mq.height * .025,
+          height: mq.height * .022,
         ),
       ],
     );

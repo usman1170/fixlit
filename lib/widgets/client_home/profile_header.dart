@@ -81,19 +81,20 @@ class ProfileHeader extends StatelessWidget {
               ),
             if (image == "")
               Container(
-                  height: 50,
-                  width: 50,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.grey.shade100,
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.grey.shade100,
+                ),
+                child: Center(
+                  child: Icon(
+                    Icons.person,
+                    color: Clrs.mainColor,
+                    size: 28,
                   ),
-                  child: Center(
-                    child: Icon(
-                      Icons.person,
-                      color: Clrs.mainColor,
-                      size: 28,
-                    ),
-                  )),
+                ),
+              ),
             const SizedBox(
               width: 20,
             ),
