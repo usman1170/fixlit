@@ -1,3 +1,4 @@
+import 'package:fixlit/models/service_provider_model.dart';
 import 'package:fixlit/screens/client/catagory_card_result.dart';
 import 'package:fixlit/widgets/client_home/main_header.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,9 @@ class SeeAllCatagoryScreen extends StatefulWidget {
 }
 
 class _SeeAllCatagoryScreenState extends State<SeeAllCatagoryScreen> {
+  List<ServiceProvider> list = [];
+  final List<ServiceProvider> searchList = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,21 +22,23 @@ class _SeeAllCatagoryScreenState extends State<SeeAllCatagoryScreen> {
           ClientCustomAppBar(btn: true, isSearch: true),
           Expanded(
               child: ListView(
-            children: const [
+            children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   AllCatagoryCard(
                     title: 'Plumbing',
                     image: 'assets/imgs/plumb1.jpg',
+                    list: list,
                   ),
                   AllCatagoryCard(
                     title: 'Electrition',
                     image: 'assets/imgs/elect.jpeg',
+                    list: list,
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Row(
@@ -41,14 +47,16 @@ class _SeeAllCatagoryScreenState extends State<SeeAllCatagoryScreen> {
                   AllCatagoryCard(
                     title: 'Driver',
                     image: 'assets/imgs/driver.jpg',
+                    list: list,
                   ),
                   AllCatagoryCard(
                     title: 'Painting',
                     image: 'assets/imgs/paint.jpg',
+                    list: list,
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Row(
@@ -57,14 +65,16 @@ class _SeeAllCatagoryScreenState extends State<SeeAllCatagoryScreen> {
                   AllCatagoryCard(
                     title: 'Cleaning',
                     image: 'assets/imgs/clean.jpeg',
+                    list: list,
                   ),
                   AllCatagoryCard(
                     title: 'Lawn Mowing',
                     image: 'assets/imgs/lawn.jpeg',
+                    list: list,
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Row(
@@ -73,6 +83,7 @@ class _SeeAllCatagoryScreenState extends State<SeeAllCatagoryScreen> {
                   AllCatagoryCard(
                     title: 'AC Service',
                     image: 'assets/imgs/ac.webp',
+                    list: list,
                   ),
                 ],
               ),
@@ -89,9 +100,11 @@ class AllCatagoryCard extends StatelessWidget {
     super.key,
     required this.title,
     required this.image,
+    required this.list,
   });
   final String title;
   final String image;
+  final List<ServiceProvider> list;
   @override
   Widget build(BuildContext context) {
     return Padding(

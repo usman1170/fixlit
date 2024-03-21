@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:fixlit/models/service_provider_model.dart';
 import 'package:fixlit/services/apis.dart';
 import 'package:fixlit/utils/pallate.dart';
 import 'package:fixlit/widgets/client_home/upper_catagory_header.dart';
@@ -14,6 +15,9 @@ class ClientHomeScreen extends StatefulWidget {
 }
 
 class _ClientHomeScreenState extends State<ClientHomeScreen> {
+  List<ServiceProvider> list = [];
+  final List<ServiceProvider> searchList = [];
+  // bool _isSearching = false;
   int activeIndex = 0;
   final images = [
     'assets/imgs/plumb.webp',

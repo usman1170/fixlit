@@ -123,6 +123,21 @@ class Services {
     });
   }
 
+  // get all service providers
+  // to get all users
+  static Stream<QuerySnapshot<Map<String, dynamic>>> getServiceProvidersIds(
+      List<String> userIDs) {
+    return firestore
+        .collection("service_provider")
+        .where("id", whereIn: userIDs.isEmpty ? [''] : userIDs)
+        // .where("id", isNotEqualTo: user.uid)
+        .snapshots();
+  } // to get all users
+
+  static Stream<QuerySnapshot<Map<String, dynamic>>> getServiceProviders() {
+    return firestore.collection("service_provider").snapshots();
+  }
+
   // get my profile
   static UserModel me = UserModel(
     name: "Name",

@@ -153,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         _inputField(_email),
         SizedBox(
-          height: mq.height * .035,
+          height: mq.height * .032,
         ),
         _inputField(_password, isPassword: true),
         SizedBox(
