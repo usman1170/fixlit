@@ -4,9 +4,15 @@ class Dialogs {
   static void showMassage(BuildContext context, String msg) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(msg),
+        content: Text(
+          msg,
+          style: TextStyle(
+            fontSize: 14.5,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
         duration: const Duration(seconds: 3),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.orange.shade800,
         behavior: SnackBarBehavior.floating,
       ),
     );

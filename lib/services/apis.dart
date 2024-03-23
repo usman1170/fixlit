@@ -124,21 +124,21 @@ class Services {
   }
 
   // get all service providers
-  // to get all users
-  static Stream<QuerySnapshot<Map<String, dynamic>>> getServiceProvidersIds(
+  static Stream<QuerySnapshot<Map<String, dynamic>>> getServiceProviders(
       List<String> userIDs) {
     return firestore
         .collection("service_provider")
         .where("id", whereIn: userIDs.isEmpty ? [''] : userIDs)
         // .where("id", isNotEqualTo: user.uid)
         .snapshots();
-  } // to get all users
+  }
 
-  static Stream<QuerySnapshot<Map<String, dynamic>>> getServiceProviders() {
+  // get all service providers Ids
+  static Stream<QuerySnapshot<Map<String, dynamic>>> getServiceProvidersIds() {
     return firestore.collection("service_provider").snapshots();
   }
 
-  // get my profile
+  // get main profile for user decider
   static UserModel me = UserModel(
     name: "Name",
     id: user.uid,

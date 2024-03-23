@@ -74,6 +74,8 @@ class _ServiceProviderHomeState extends State<ServiceProviderHome> {
                       padding: const EdgeInsets.only(right: 8),
                       child: ImageViewerClip(
                         urlImage: user.image,
+                        height: 55,
+                        width: 55,
                       ),
                     ),
                   ],

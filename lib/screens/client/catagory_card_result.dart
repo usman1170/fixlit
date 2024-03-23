@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:fixlit/models/service_provider_model.dart';
-import 'package:fixlit/screens/client/service_provider_details.dart';
+import 'package:fixlit/screens/client/service_provider/service_provider_details.dart';
 import 'package:fixlit/screens/service%20provider/image_clip_view.dart';
 import 'package:fixlit/services/apis.dart';
 import 'package:fixlit/utils/pallate.dart';
@@ -58,7 +58,7 @@ class _SearchedCatagoryState extends State<SearchedCatagory> {
           ),
           Expanded(
             child: StreamBuilder(
-                stream: Services.getServiceProviders(),
+                stream: Services.getServiceProvidersIds(),
                 builder: (context, snapshot) {
                   switch (snapshot.connectionState) {
                     case ConnectionState.waiting:
@@ -74,7 +74,7 @@ class _SearchedCatagoryState extends State<SearchedCatagory> {
                     case ConnectionState.active:
                     case ConnectionState.done:
                       return StreamBuilder(
-                        stream: Services.getServiceProvidersIds(
+                        stream: Services.getServiceProviders(
                           snapshot.data?.docs.map((e) => e.id).toList() ?? [],
                         ),
                         builder: (context, snapshot) {
@@ -137,6 +137,8 @@ class _SearchedCatagoryState extends State<SearchedCatagory> {
                                               child: ListTile(
                                                 leading: ImageViewerClip(
                                                   urlImage: data.image,
+                                                  height: 55,
+                                                  width: 55,
                                                 ),
                                                 title: Text(
                                                   data.name.toUpperCase(),

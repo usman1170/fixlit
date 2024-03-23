@@ -58,7 +58,11 @@ class _ServiceChatScreenState extends State<ServiceChatScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(right: 8),
-                  child: ImageViewerClip(urlImage: user.image),
+                  child: ImageViewerClip(
+                    urlImage: user.image,
+                    height: 55,
+                    width: 55,
+                  ),
                 ),
               ],
             ),
