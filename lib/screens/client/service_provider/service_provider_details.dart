@@ -1,8 +1,12 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:fixlit/main.dart';
 import 'package:fixlit/models/service_provider_model.dart';
+import 'package:fixlit/screens/client/chat/client_chat_screen.dart';
 import 'package:fixlit/screens/client/service_provider/address_detail_widget.dart';
 import 'package:fixlit/screens/client/service_provider/upper_contaier.dart';
 import 'package:fixlit/screens/service%20provider/image_clip_view.dart';
+import 'package:fixlit/services/apis.dart';
 import 'package:fixlit/utils/pallate.dart';
 import 'package:fixlit/widgets/dialogs.dart';
 import 'package:flutter/material.dart';
@@ -240,38 +244,51 @@ class _ServiceProviderDetailsState extends State<ServiceProviderDetails> {
           Positioned(
             bottom: 10,
             left: mq.width * .18,
-            child: Container(
-              height: 55,
-              width: mq.width * .64,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [
-                  Clrs.mainColor,
-                  Colors.blue.shade900,
-                  Colors.blue.shade600,
-                ]),
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: const Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Start chat with him",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
+            child: InkWell(
+              onTap: () async {
+                await Services.addChatUser(widget.serviceProvider.email);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => ClientChatScreen(
+                      user: widget.serviceProvider,
+                    ),
+                  ),
+                );
+              },
+              child: Container(
+                height: 55,
+                width: mq.width * .64,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: [
+                    Clrs.mainColor,
+                    Colors.blue.shade900,
+                    Colors.blue.shade600,
+                  ]),
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: const Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Start chat with him",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      size: 22,
-                      color: Colors.white,
-                    )
-                  ],
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 22,
+                        color: Colors.white,
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -1,4 +1,4 @@
-import 'package:fixlit/screens/service%20provider/chat/service_chat_screen.dart';
+import 'package:fixlit/screens/service%20provider/chat/service_inbox.dart';
 import 'package:fixlit/screens/service%20provider/profile/service_profile.dart';
 import 'package:fixlit/screens/service%20provider/service_home.dart';
 import 'package:fixlit/services/apis.dart';
@@ -19,7 +19,7 @@ class _ServiceBottomNavigationBarState
   int myCurrentindex = 0;
   List pages = [
     const ServiceProviderHome(),
-    const ServiceChatScreen(),
+    const ServiceInbox(),
     ServiceProfileScreen(user: Services.serviceProvider),
   ];
   @override

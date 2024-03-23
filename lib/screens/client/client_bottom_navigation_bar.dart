@@ -1,4 +1,4 @@
-import 'package:fixlit/screens/client/chat/client_chat_screen.dart';
+import 'package:fixlit/screens/client/chat/client_inbox.dart';
 import 'package:fixlit/screens/client/profile/client_profile.dart';
 import 'package:fixlit/screens/client/client_home.dart';
 import 'package:fixlit/services/apis.dart';
@@ -18,7 +18,7 @@ class _ClientBottomNavigationBarState extends State<ClientBottomNavigationBar> {
   int myCurrentindex = 0;
   List pages = [
     const ClientHomeScreen(),
-    const ClientChatScreen(),
+    const ClientInbox(),
     ClientProfileScreen(user: Services.client),
   ];
   @override

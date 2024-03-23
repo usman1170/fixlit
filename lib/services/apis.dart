@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:fixlit/models/client_model.dart';
+import 'package:fixlit/models/message_model.dart';
 import 'package:fixlit/models/service_provider_model.dart';
 import 'package:fixlit/models/user_model.dart';
 
@@ -123,6 +124,80 @@ class Services {
     });
   }
 
+  // static Future<void> chatUserCheck(ServiceProvider serviceProvider) async {
+  //   await firestore.collection("client").doc(user.uid).collection("inbox").doc(serviceProvider.id).get().then((user) async {
+  //     if (user.exists) {
+
+  //     } else {
+  //       await addChatUser(user.id).then((value) => getMyProfile());
+  //     }
+  //   });
+  // }
+
+  // for adding an chat user for our conversation
+  static Future<bool> addChatUser(String email) async {
+    final data = await firestore
+        .collection('service_provider')
+        .where('email', isEqualTo: email)
+        .get();
+    if (data.docs.isNotEmpty && data.docs.first.id != user.uid) {
+      //user exists
+      firestore
+          .collection('client')
+          .doc(user.uid)
+          .collection('inbox')
+          .doc(data.docs.first.id)
+          .set({
+        "email": email,
+      });
+
+      return true;
+    } else {
+      //user doesn't exists
+
+      return false;
+    }
+  }
+
+  //getting my inbox users
+  // to get all users
+  static Stream<QuerySnapshot<Map<String, dynamic>>> getAllUsers(
+      List<String> userIDs) {
+    return firestore
+        .collection("service_provider")
+        .where("id", whereIn: userIDs.isEmpty ? [''] : userIDs)
+        // .where("id", isNotEqualTo: user.uid)
+        .snapshots();
+  }
+
+  // to get all  my users
+  static Stream<QuerySnapshot<Map<String, dynamic>>> getMyUsers() {
+    return firestore
+        .collection("client")
+        .doc(user.uid)
+        .collection("inbox")
+        .snapshots();
+  }
+
+  // to get all users
+  static Stream<QuerySnapshot<Map<String, dynamic>>> getServiceAllUsers(
+      List<String> userIDs) {
+    return firestore
+        .collection("client")
+        .where("id", whereIn: userIDs.isEmpty ? [''] : userIDs)
+        // .where("id", isNotEqualTo: user.uid)
+        .snapshots();
+  }
+
+  // to get all  my users
+  static Stream<QuerySnapshot<Map<String, dynamic>>> getServiceMyUsers() {
+    return firestore
+        .collection("service_provider")
+        .doc(user.uid)
+        .collection("inbox")
+        .snapshots();
+  }
+
   // get all service providers
   static Stream<QuerySnapshot<Map<String, dynamic>>> getServiceProviders(
       List<String> userIDs) {
@@ -231,5 +306,204 @@ class Services {
     await firestore.collection("service_provider").doc(user.uid).update({
       "license": serviceProvider.license,
     });
+  }
+  // User info
+
+  static Stream<QuerySnapshot<Map<String, dynamic>>> getUserInfo(
+      ServiceProvider chatUser) {
+    return firestore
+        .collection("users")
+        .where("id", isEqualTo: chatUser.id)
+        .snapshots();
+  }
+
+// for update active status of user
+  static Future<void> upDateActiveStatus(bool isOnline) async {
+    firestore.collection("users").doc(user.uid).update({
+      "is_online": isOnline,
+      "last_seen": DateTime.now().millisecondsSinceEpoch.toString(),
+      // "token": me.token,
+    });
+  }
+
+  // getting conversation id
+  static String getConversationId(String id) => user.uid.hashCode <= id.hashCode
+      ? "${user.uid}_$id"
+      : "${id}_${user.uid}";
+// to get all messages
+  static Stream<QuerySnapshot<Map<String, dynamic>>> getMessages(
+      ServiceProvider user) {
+    return firestore
+        .collection("chats/${getConversationId(user.id)}/messages")
+        .orderBy(
+          "sent",
+          descending: true,
+        )
+        .snapshots();
+  }
+
+  // to get all messages
+  static Stream<QuerySnapshot<Map<String, dynamic>>> getServiceMessages(
+      ClientModel user) {
+    return firestore
+        .collection("chats/${getConversationId(user.id)}/messages")
+        .orderBy(
+          "sent",
+          descending: true,
+        )
+        .snapshots();
+  }
+
+  // delete message function
+  static Future<void> deleteMessage(MessageModel message) async {
+    await firestore
+        .collection("chats/${getConversationId(message.toId)}/messages")
+        .doc(message.sent)
+        .delete();
+    if (message.type == Type.image) {
+      await storage.refFromURL(message.msg).delete();
+    }
+  }
+
+  // update message
+  static Future<void> updateMessage(
+      MessageModel message, String updatedMsg) async {
+    await firestore
+        .collection("chats/${getConversationId(message.toId)}/messages")
+        .doc(message.sent)
+        .update({
+      "msg": updatedMsg,
+    });
+  }
+
+  // to send message
+  static Future<void> sendMessage(
+      ServiceProvider chatUser, String msg, Type type) async {
+    final time = DateTime.now().millisecondsSinceEpoch.toString();
+    final MessageModel message = MessageModel(
+      msg: msg,
+      toId: chatUser.id,
+      read: '',
+      type: type,
+      fromId: user.uid,
+      sent: time,
+    );
+    final ref = firestore
+        .collection("chats/${getConversationId(chatUser.id)}/messages");
+    await ref.doc(time).set(message.toJson());
+  }
+
+// update changes of muy profile
+  static Future<void> sendFirstMessage(
+      ServiceProvider chatUser, String msg, Type type) async {
+    firestore
+        .collection("service_provider")
+        .doc(chatUser.id)
+        .collection("inbox")
+        .doc(user.uid)
+        .set({}).then(
+      (value) => sendMessage(chatUser, msg, type),
+    );
+  }
+
+// update changes of muy profile
+  static Future<void> sendServiceFirstMessage(
+      ClientModel chatUser, String msg, Type type) async {
+    firestore
+        .collection("client")
+        .doc(chatUser.id)
+        .collection("inbox")
+        .doc(user.uid)
+        .set({}).then(
+      (value) => sendServiceMessage(chatUser, msg, type),
+    );
+  }
+
+  // to send message
+  static Future<void> sendServiceMessage(
+      ClientModel chatUser, String msg, Type type) async {
+    final time = DateTime.now().millisecondsSinceEpoch.toString();
+    final MessageModel message = MessageModel(
+      msg: msg,
+      toId: chatUser.id,
+      read: '',
+      type: type,
+      fromId: user.uid,
+      sent: time,
+    );
+    final ref = firestore
+        .collection("chats/${getConversationId(chatUser.id)}/messages");
+    await ref.doc(time).set(message.toJson());
+  }
+
+  // to read or not read message blue tick
+  static Future<void> updateReadMessage(MessageModel message) async {
+    firestore
+        .collection("chats/${getConversationId(message.fromId)}/messages")
+        .doc(message.sent)
+        .update(
+      {
+        'read': DateTime.now().millisecondsSinceEpoch.toString(),
+      },
+    );
+  }
+
+// get last message to show
+  static Stream<QuerySnapshot<Map<String, dynamic>>> getLastMessage(
+      ServiceProvider user) {
+    return firestore
+        .collection("chats/${getConversationId(user.id)}/messages")
+        .orderBy(
+          "sent",
+          descending: true,
+        )
+        .limit(1)
+        .snapshots();
+  }
+
+  // funtion to send images between chat
+  static Future<void> sendChatImage(ServiceProvider chatUser, File file) async {
+    final ext = file.path.split(".").last;
+    final ref = storage.ref().child(
+        "images/${getConversationId(chatUser.id)}/${DateTime.now().millisecondsSinceEpoch}.$ext");
+    await ref
+        .putFile(file, SettableMetadata(contentType: "image/$ext"))
+        .then((p0) {});
+    final imageUrl = await ref.getDownloadURL();
+    await sendMessage(
+      chatUser,
+      imageUrl,
+      Type.image,
+    );
+  }
+
+// get last message to show
+  static Stream<QuerySnapshot<Map<String, dynamic>>> getServiceLastMessage(
+      ClientModel user) {
+    return firestore
+        .collection("chats/${getConversationId(user.id)}/messages")
+        .orderBy(
+          "sent",
+          descending: true,
+        )
+        .limit(1)
+        .snapshots();
+  }
+
+  // funtion to send images between chat
+  static Future<void> sendServiceChatImage(
+      ClientModel chatUser, File file) async {
+    final ext = file.path.split(".").last;
+    final ref = storage.ref().child(
+        "images/${getConversationId(chatUser.id)}/${DateTime.now().millisecondsSinceEpoch}.$ext");
+    await ref
+        .putFile(file, SettableMetadata(contentType: "image/$ext"))
+        .then((p0) {});
+    final imageUrl = await ref.getDownloadURL();
+    await sendServiceMessage(
+      chatUser,
+      imageUrl,
+      Type.image,
+    );
   }
 }
