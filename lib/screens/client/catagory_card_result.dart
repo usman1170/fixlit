@@ -116,12 +116,14 @@ class _SearchedCatagoryState extends State<SearchedCatagory> {
                                       child: InkWell(
                                         onTap: () {
                                           Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    ServiceProviderDetails(
-                                                        serviceProvider: data),
-                                              ));
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  ServiceProviderDetails(
+                                                serviceProvider: data,
+                                              ),
+                                            ),
+                                          );
                                         },
                                         child: Card(
                                           color: Colors.grey.shade200,

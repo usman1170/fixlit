@@ -13,9 +13,6 @@ class ClientInbox extends StatefulWidget {
 
 class _ClientInboxState extends State<ClientInbox> {
   List<ServiceProvider> list = [];
-  bool homeScreen = false;
-  bool inboxScreen = true;
-  bool profileScreen = false;
 
   @override
   Widget build(BuildContext context) {

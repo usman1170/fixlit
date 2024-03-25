@@ -249,7 +249,7 @@ class _ServiceMassageCardState extends State<ServiceMassageCard> {
           child: Container(
             padding: EdgeInsets.all(
               widget.message.type == Type.image
-                  ? MediaQuery.of(context).size.width * .03
+                  ? MediaQuery.of(context).size.width * .0
                   : MediaQuery.of(context).size.width * .04,
             ),
             margin: EdgeInsets.symmetric(
@@ -263,7 +263,11 @@ class _ServiceMassageCardState extends State<ServiceMassageCard> {
                 topRight: Radius.circular(30),
                 bottomRight: Radius.circular(30),
               ),
-              color: const Color.fromARGB(255, 215, 235, 250),
+
+              color: widget.message.type == Type.image
+                  ? const Color.fromARGB(255, 235, 250, 254)
+                  : const Color.fromARGB(255, 215, 235, 250),
+              // color: const Color.fromARGB(255, 215, 235, 250),
             ),
             child: widget.message.type == Type.text
                 ? Column(

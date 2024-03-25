@@ -249,7 +249,7 @@ class _MassageCardState extends State<MassageCard> {
           child: Container(
             padding: EdgeInsets.all(
               widget.message.type == Type.image
-                  ? MediaQuery.of(context).size.width * .03
+                  ? MediaQuery.of(context).size.width * .0
                   : MediaQuery.of(context).size.width * .04,
             ),
             margin: EdgeInsets.symmetric(
@@ -257,13 +257,21 @@ class _MassageCardState extends State<MassageCard> {
               vertical: MediaQuery.of(context).size.height * .01,
             ),
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.blue),
+              border: widget.message.type == Type.image
+                  ? Border.all(
+                      color: const Color.fromARGB(255, 235, 250, 254),
+                    )
+                  : Border.all(color: Colors.blue),
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(30),
                 topRight: Radius.circular(30),
                 bottomRight: Radius.circular(30),
               ),
-              color: const Color.fromARGB(255, 215, 235, 250),
+
+              color: widget.message.type == Type.image
+                  ? const Color.fromARGB(255, 235, 250, 254)
+                  : const Color.fromARGB(255, 215, 235, 250),
+              // color: const Color.fromARGB(255, 215, 235, 250),
             ),
             child: widget.message.type == Type.text
                 ? Column(
@@ -292,22 +300,33 @@ class _MassageCardState extends State<MassageCard> {
                 : Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(
-                          MediaQuery.of(context).size.height * .015,
-                        ),
-                        child: CachedNetworkImage(
-                          imageUrl: widget.message.msg,
-                          fit: BoxFit.cover,
-                          placeholder: (context, url) => const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                            ),
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Clrs.mainColor.withOpacity(.4),
+                            width: 4,
                           ),
-                          errorWidget: (context, url, error) => const Icon(
-                            Icons.image,
-                            size: 60,
+                          borderRadius: BorderRadius.circular(
+                            MediaQuery.of(context).size.height * .04,
+                          ),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(
+                            MediaQuery.of(context).size.height * .036,
+                          ),
+                          child: CachedNetworkImage(
+                            imageUrl: widget.message.msg,
+                            fit: BoxFit.cover,
+                            placeholder: (context, url) => const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                              ),
+                            ),
+                            errorWidget: (context, url, error) => const Icon(
+                              Icons.image,
+                              size: 60,
+                            ),
                           ),
                         ),
                       ),
