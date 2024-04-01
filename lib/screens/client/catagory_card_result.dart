@@ -1,5 +1,4 @@
 // ignore_for_file: avoid_print
-
 import 'package:fixlit/models/service_provider_model.dart';
 import 'package:fixlit/screens/client/service_provider/service_provider_details.dart';
 import 'package:fixlit/screens/service%20provider/image_clip_view.dart';

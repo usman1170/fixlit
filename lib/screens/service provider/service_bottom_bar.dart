@@ -61,9 +61,13 @@ class _ServiceBottomNavigationBarState
                 label: "Home",
               ),
               BottomNavigationBarItem(
-                  icon: Icon(CupertinoIcons.chat_bubble), label: "Inbox"),
+                icon: Icon(CupertinoIcons.chat_bubble),
+                label: "Inbox",
+              ),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.person), label: "Profile"),
+                icon: Icon(Icons.person),
+                label: "Profile",
+              ),
             ],
           ),
         ),

@@ -83,20 +83,7 @@ class _ServiceMassageCardState extends State<ServiceMassageCard> {
                       size: 26,
                     ),
                     name: "Save image",
-                    ontap: () async {
-                      // await GallerySaver.saveImage(widget.message.msg,
-                      //         albumName: "Hello Chat")
-                      //     .then((value) {
-                      //   Navigator.pop(context);
-                      //   if (value != null && value == true) {
-                      //     Dialogs.showMassage(
-                      //         context, "Image saved to Gellary");
-                      //   } else {
-                      //     Dialogs.showMassage(
-                      //         context, "Error: Image not saved");
-                      //   }
-                      // });
-                    },
+                    ontap: () {},
                   ),
             Divider(
               color: Colors.black54,

@@ -167,7 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
         SizedBox(
           height: mq.height * .025,
         ),
-        _otherLogin(),
+        _termConditions(),
         SizedBox(
           height: mq.height * .025,
         ),
@@ -322,7 +322,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _otherLogin() {
+  Widget _termConditions() {
     return Center(
       child: SizedBox(
         width: 250,

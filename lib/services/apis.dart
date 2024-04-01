@@ -124,16 +124,6 @@ class Services {
     });
   }
 
-  // static Future<void> chatUserCheck(ServiceProvider serviceProvider) async {
-  //   await firestore.collection("client").doc(user.uid).collection("inbox").doc(serviceProvider.id).get().then((user) async {
-  //     if (user.exists) {
-
-  //     } else {
-  //       await addChatUser(user.id).then((value) => getMyProfile());
-  //     }
-  //   });
-  // }
-
   // for adding an chat user for our conversation
   static Future<bool> addChatUser(String email) async {
     final data = await firestore
@@ -185,7 +175,6 @@ class Services {
     return firestore
         .collection("client")
         .where("id", whereIn: userIDs.isEmpty ? [''] : userIDs)
-        // .where("id", isNotEqualTo: user.uid)
         .snapshots();
   }
 

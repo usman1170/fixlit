@@ -57,7 +57,7 @@ class _ServiceChatUSerCardState extends State<ServiceChatUSerCard> {
               child: ListTile(
                 leading: ImageViewerClip(
                     urlImage: users.image, height: 46, width: 46),
-                // user name
+
                 title: Text(users.name.capitalized),
                 // for last message
                 subtitle: Text(
