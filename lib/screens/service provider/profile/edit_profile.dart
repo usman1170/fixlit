@@ -19,7 +19,6 @@ class ServiceEditProfileScreen extends StatefulWidget {
 
 class _ServiceEditProfileScreenState extends State<ServiceEditProfileScreen> {
   String? _image;
-  // String? _license;
 
   bool isLoading = false;
   final _formKey = GlobalKey<FormState>();

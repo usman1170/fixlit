@@ -5,7 +5,6 @@ import 'package:fixlit/screens/service%20provider/chat/service_chat_screen.dart'
 import 'package:fixlit/screens/service%20provider/image_clip_view.dart';
 import 'package:fixlit/services/apis.dart';
 import 'package:flutter/material.dart';
-// import 'package:velocity_x/velocity_x.dart';
 
 class ServiceChatUSerCard extends StatefulWidget {
   const ServiceChatUSerCard({super.key, required this.user});

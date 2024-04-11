@@ -6,7 +6,7 @@ class Dialogs {
       SnackBar(
         content: Text(
           msg,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 14.5,
             fontWeight: FontWeight.w500,
           ),

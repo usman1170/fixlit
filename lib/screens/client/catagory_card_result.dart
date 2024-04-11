@@ -193,7 +193,7 @@ class _SearchedCatagoryState extends State<SearchedCatagory> {
                               } else {
                                 return const Center(
                                   child: Text(
-                                    'Sorry there is no Service availabe  😢',
+                                    'There is no Service availabe yet  😢',
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500,

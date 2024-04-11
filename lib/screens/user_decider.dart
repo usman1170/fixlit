@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fixlit/auth/screens/login.dart';
+import 'package:fixlit/auth/widgets/loading_screen.dart';
 import 'package:fixlit/screens/client/client_bottom_navigation_bar.dart';
 import 'package:fixlit/screens/service%20provider/service_bottom_bar.dart';
 import 'package:flutter/material.dart';
@@ -34,44 +35,27 @@ class _UserDeciderScreenState extends State<UserDeciderScreen> {
     return FutureBuilder(
       future: getUser(),
       builder: (context, snapshot) {
-        final role = snapshot.data;
-        // print("========================");
-        // print("snapshot role ${snapshot.data}");
-        // print("========================");
-        if (role == "client" && role != null) {
-          return const ClientBottomNavigationBar();
-        } else if (role == "serviceProvider" && role != null) {
-          return const ServiceBottomNavigationBar();
-        } else {
-          return const LoginScreen();
+        switch (snapshot.connectionState) {
+          case ConnectionState.none:
+          case ConnectionState.waiting:
+            return const LoadingScreen();
+          case ConnectionState.active:
+          case ConnectionState.done:
+            final role = snapshot.data;
+            // print("========================");
+            // print("snapshot role ${snapshot.data}");
+            // print("========================");
+            if (role == "client" && role != null) {
+              return const ClientBottomNavigationBar();
+            } else if (role == "serviceProvider" && role != null) {
+              return const ServiceBottomNavigationBar();
+            } else {
+              return const LoginScreen();
+            }
+          default:
+            return const LoginScreen();
         }
       },
     );
-    // return FutureBuilder(
-    //   future: getUser(),
-    //   builder: (context, snapshot) {
-    //     switch (snapshot.connectionState) {
-    //       case ConnectionState.none:
-    //       case ConnectionState.waiting:
-    //         return const LoadingScreen();
-    //       case ConnectionState.active:
-    //       case ConnectionState.done:
-    //         final role = snapshot.data;
-    //         // print("========================");
-    //         // print("snapshot role ${snapshot.data}");
-    //         // print("========================");
-    //         if (role == "client" && role != null) {
-    //           return const ClientBottomNavigationBar();
-    //         } else if (role == "serviceProvider" && role != null) {
-    //           return const ServiceBottomNavigationBar();
-    //         } else {
-    //           return const LoginScreen();
-    //         }
-    //       default:
-    //         return const LoginScreen();
-    //     }
-    //   },
-    // );
   }
 }
-//serviceProvider

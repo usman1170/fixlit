@@ -33,31 +33,3 @@ class BackPopButton extends StatelessWidget {
     );
   }
 }
-
-// class NewButton extends StatelessWidget {
-//   const NewButton({super.key, required this.ontap, required this.title});
-//   final VoidCallback ontap;
-//   final String title;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return ElevatedButton(
-//       style: ElevatedButton.styleFrom(
-//         shape: const StadiumBorder(),
-//         backgroundColor: Colors.amber,
-//         elevation: 8,
-//         shadowColor: Colors.amber,
-//         minimumSize: const Size.fromHeight(55),
-//       ),
-//       onPressed: ontap,
-//       child: Text(
-//         title,
-//         style: const TextStyle(
-//           fontSize: 18,
-//           color: Colors.white,
-//           fontWeight: FontWeight.w700,
-//         ),
-//       ),
-//     );
-//   }
-// }
