@@ -8,7 +8,7 @@ import 'package:fixlit/utils/pallate.dart';
 import 'package:fixlit/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:velocity_x/velocity_x.dart';
+// import 'package:velocity_x/velocity_x.dart';
 
 class ClientChatScreen extends StatefulWidget {
   const ClientChatScreen({super.key, required this.user});
@@ -37,7 +37,8 @@ class _ClientChatScreenState extends State<ClientChatScreen> {
             bgcolor: Clrs.mainColor,
           ),
           title: Text(
-            "Chatting with ${user.name.capitalized}",
+            // .capitalizes with velocity x
+            "Chatting with ${user.name}",
             style: const TextStyle(color: Colors.white),
           ),
         ),

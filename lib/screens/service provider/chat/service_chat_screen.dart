@@ -8,7 +8,6 @@ import 'package:fixlit/utils/pallate.dart';
 import 'package:fixlit/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class ServiceChatScreen extends StatefulWidget {
   const ServiceChatScreen({super.key, required this.user});
@@ -37,7 +36,8 @@ class _ServiceChatScreenState extends State<ServiceChatScreen> {
             bgcolor: Clrs.mainColor,
           ),
           title: Text(
-            "Chatting with ${user.name.capitalized}",
+            // .capitalizes with velocity x
+            "Chatting with ${user.name}",
             style: const TextStyle(color: Colors.white),
           ),
         ),

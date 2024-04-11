@@ -5,7 +5,6 @@ import 'package:fixlit/screens/client/chat/date_util.dart';
 import 'package:fixlit/screens/service%20provider/image_clip_view.dart';
 import 'package:fixlit/services/apis.dart';
 import 'package:flutter/material.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class ChatUSerCard extends StatefulWidget {
   const ChatUSerCard({super.key, required this.user});
@@ -57,7 +56,10 @@ class _ChatUSerCardState extends State<ChatUSerCard> {
               child: ListTile(
                 leading: ImageViewerClip(
                     urlImage: users.image, height: 46, width: 46),
-                title: Text("${users.name.capitalized}, ${users.catagory}"),
+                title: Text(
+
+                    // .capitalizes with velocity x
+                    "${users.name}, ${users.catagory}"),
                 // for last message
                 subtitle: Text(
                   _message != null

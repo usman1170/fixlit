@@ -1,9 +1,10 @@
 // ignore_for_file: avoid_print
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fixlit/auth/screens/login.dart';
 import 'package:fixlit/screens/client/client_bottom_navigation_bar.dart';
 import 'package:fixlit/screens/service%20provider/service_bottom_bar.dart';
-import 'package:fixlit/services/apis.dart';
 import 'package:flutter/material.dart';
 
 class UserDeciderScreen extends StatefulWidget {
@@ -14,31 +15,63 @@ class UserDeciderScreen extends StatefulWidget {
 }
 
 class _UserDeciderScreenState extends State<UserDeciderScreen> {
-  @override
-  void dispose() {
-    Services.me.role = "";
-    setState(() {});
-    super.dispose();
+  final user = FirebaseAuth.instance.currentUser;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  Future<String> getUser() async {
+    try {
+      final snapshot = await firestore.collection("users").doc(user!.uid).get();
+      final role = snapshot.data()?["role"];
+      print("My role is -- $role");
+      return role;
+    } catch (e) {
+      print(e);
+      return e.toString();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: Services.getMyProfile(),
+      future: getUser(),
       builder: (context, snapshot) {
-        final role = Services.me.role;
-        print("========================");
-        print(role);
-        print("========================");
-        if (role == "client") {
+        final role = snapshot.data;
+        // print("========================");
+        // print("snapshot role ${snapshot.data}");
+        // print("========================");
+        if (role == "client" && role != null) {
           return const ClientBottomNavigationBar();
-        } else if (role == "serviceProvider") {
+        } else if (role == "serviceProvider" && role != null) {
           return const ServiceBottomNavigationBar();
         } else {
           return const LoginScreen();
         }
       },
     );
+    // return FutureBuilder(
+    //   future: getUser(),
+    //   builder: (context, snapshot) {
+    //     switch (snapshot.connectionState) {
+    //       case ConnectionState.none:
+    //       case ConnectionState.waiting:
+    //         return const LoadingScreen();
+    //       case ConnectionState.active:
+    //       case ConnectionState.done:
+    //         final role = snapshot.data;
+    //         // print("========================");
+    //         // print("snapshot role ${snapshot.data}");
+    //         // print("========================");
+    //         if (role == "client" && role != null) {
+    //           return const ClientBottomNavigationBar();
+    //         } else if (role == "serviceProvider" && role != null) {
+    //           return const ServiceBottomNavigationBar();
+    //         } else {
+    //           return const LoginScreen();
+    //         }
+    //       default:
+    //         return const LoginScreen();
+    //     }
+    //   },
+    // );
   }
 }
 //serviceProvider
