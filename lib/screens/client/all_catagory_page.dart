@@ -12,14 +12,16 @@ class SeeAllCatagoryScreen extends StatefulWidget {
 
 class _SeeAllCatagoryScreenState extends State<SeeAllCatagoryScreen> {
   List<ServiceProvider> list = [];
-  final List<ServiceProvider> searchList = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
-          ClientCustomAppBar(btn: true, isSearch: true),
+          ClientCustomAppBar(
+            btn: true,
+            isSearch: true,
+          ),
           Expanded(
               child: ListView(
             children: [

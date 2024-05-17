@@ -16,7 +16,6 @@ class ClientCustomAppBar extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.symmetric(vertical: 18),
-      // height: 100,
       decoration: BoxDecoration(
         color: Clrs.mainColor,
         borderRadius: const BorderRadius.only(
@@ -34,49 +33,11 @@ class ClientCustomAppBar extends StatelessWidget {
           ),
           isSearch
               ? const SizedBox(
-                  height: 14,
+                  height: 12,
                 )
               : const SizedBox(
                   height: 6,
                 ),
-          isSearch
-              ? Container(
-                  margin: const EdgeInsets.only(right: 10),
-                  height: 47,
-                  width: MediaQuery.of(context).size.width - 36,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: Colors.grey.shade100,
-                  ),
-                  child: TextField(
-                    cursorColor: Colors.black87,
-                    style: const TextStyle(
-                      color: Colors.black87,
-                    ),
-                    cursorHeight: 20,
-                    decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.search),
-                        hintText: 'Try Plumbing, Cleaning, Welding etc...',
-                        prefixIconColor: Colors.black54,
-                        hintStyle: const TextStyle(
-                            fontSize: 14, color: Colors.black54),
-                        enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black87),
-                          borderRadius: BorderRadius.all(Radius.circular(30)),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(30)),
-                          borderSide: BorderSide(color: Clrs.mainColor),
-                        ),
-                        contentPadding: const EdgeInsets.only(
-                          top: 18,
-                          bottom: 18,
-                          left: 12,
-                        )),
-                  ),
-                )
-              : const SizedBox(),
         ],
       ),
     );

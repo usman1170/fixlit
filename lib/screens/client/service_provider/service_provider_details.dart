@@ -121,7 +121,7 @@ class _ServiceProviderDetailsState extends State<ServiceProviderDetails> {
                     height: 16,
                   ),
                   AddressDetailsWidget(
-                      title: "City", msg: " City ${data.city}, Pakistan   ➤"),
+                      title: "City :", msg: " City ${data.city}, Pakistan   ➤"),
                   const SizedBox(
                     height: 16,
                   ),

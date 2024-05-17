@@ -39,13 +39,21 @@ class ImageViewerClip extends StatelessWidget {
               if (loadingProgress == null) {
                 return child;
               } else {
-                return Center(
-                  child: CircularProgressIndicator(
-                    color: Clrs.mainColor,
-                    value: loadingProgress.expectedTotalBytes != null
-                        ? loadingProgress.cumulativeBytesLoaded /
-                            (loadingProgress.expectedTotalBytes ?? 1)
-                        : null,
+                return Container(
+                  height: height,
+                  width: width,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.grey.shade100,
+                  ),
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.blue,
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                              (loadingProgress.expectedTotalBytes ?? 1)
+                          : null,
+                    ),
                   ),
                 );
               }

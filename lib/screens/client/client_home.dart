@@ -1,5 +1,4 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:fixlit/models/service_provider_model.dart';
 import 'package:fixlit/services/apis.dart';
 import 'package:fixlit/utils/pallate.dart';
 import 'package:fixlit/widgets/client_home/upper_catagory_header.dart';
@@ -15,9 +14,6 @@ class ClientHomeScreen extends StatefulWidget {
 }
 
 class _ClientHomeScreenState extends State<ClientHomeScreen> {
-  List<ServiceProvider> list = [];
-  final List<ServiceProvider> searchList = [];
-  // bool _isSearching = false;
   int activeIndex = 0;
   final images = [
     'assets/imgs/plumb.webp',
@@ -44,61 +40,57 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
             btn: false,
             isSearch: true,
           ),
+          const SizedBox(
+            height: 17,
+          ),
           Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+              const UpperCatagoryHeader(),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
                 children: [
-                  const SizedBox(
-                    height: 14,
-                  ),
-                  const UpperCatagoryHeader(),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 14),
-                        child: Text(
-                          "Populer Services :",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Clrs.mainColor,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 14, vertical: 12),
-                    child: CarouselSlider.builder(
-                      itemCount: images.length,
-                      itemBuilder: (context, index, realIndex) {
-                        final path = images[index];
-                        return buildImage(path, index);
-                      },
-                      options: CarouselOptions(
-                        autoPlay: true,
-                        autoPlayAnimationDuration: const Duration(seconds: 2),
-                        height: MediaQuery.of(context).size.height * .28,
-                        onPageChanged: (index, reason) => setState(() {
-                          activeIndex = index;
-                        }),
+                    padding: const EdgeInsets.only(left: 14),
+                    child: Text(
+                      "Populer Services :",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Clrs.mainColor,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  buildIndicator()
                 ],
               ),
+              const SizedBox(
+                height: 16,
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                child: CarouselSlider.builder(
+                  itemCount: images.length,
+                  itemBuilder: (context, index, realIndex) {
+                    final path = images[index];
+                    return buildImage(path, index);
+                  },
+                  options: CarouselOptions(
+                    autoPlay: true,
+                    autoPlayAnimationDuration: const Duration(seconds: 2),
+                    height: MediaQuery.of(context).size.height * .32,
+                    onPageChanged: (index, reason) => setState(() {
+                      activeIndex = index;
+                    }),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              buildIndicator()
             ],
           ),
         ],

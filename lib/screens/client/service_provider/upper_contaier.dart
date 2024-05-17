@@ -32,7 +32,7 @@ class UpperContainerDetails extends StatelessWidget {
             height: mq.height * .26,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: Colors.amber,
+              // color: Colors.amber,
             ),
             child: ImageViewerClip(
               urlImage: user.image,
@@ -77,10 +77,14 @@ class UpperContainerDetails extends StatelessWidget {
                   const SizedBox(
                     width: 12,
                   ),
-                  Text(
-                    user.name.toUpperCase(),
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w500,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * .31,
+                    child: Text(
+                      user.name.toUpperCase(),
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ],
@@ -128,10 +132,14 @@ class UpperContainerDetails extends StatelessWidget {
                   const SizedBox(
                     width: 12,
                   ),
-                  Text(
-                    user.available ? "Available" : "Not Available right now",
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w500,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * .3,
+                    child: Text(
+                      user.available ? "Available" : "Not Available Right now",
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ],
@@ -145,11 +153,14 @@ class UpperContainerDetails extends StatelessWidget {
                   const SizedBox(
                     width: 12,
                   ),
-                  Text(
-                    user.timings,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w500,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * .3,
+                    child: Text(
+                      user.timings,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ],

@@ -21,9 +21,7 @@ class SearchedCatagory extends StatefulWidget {
 
 class _SearchedCatagoryState extends State<SearchedCatagory> {
   List<ServiceProvider> list = [];
-  final List<ServiceProvider> searchList = [];
   List<ServiceProvider> newList = [];
-
   @override
   Widget build(BuildContext context) {
     final catagory = widget.catagory;
@@ -98,6 +96,7 @@ class _SearchedCatagoryState extends State<SearchedCatagory> {
                                           ServiceProvider.fromJson(e.data()))
                                       .toList() ??
                                   [];
+                              newList.clear();
                               for (var i in list) {
                                 if (i.catagory == widget.catagory) {
                                   newList.add(i);

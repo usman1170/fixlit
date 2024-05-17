@@ -19,7 +19,10 @@ class _ClientInboxState extends State<ClientInbox> {
     return Scaffold(
       body: Column(
         children: [
-          ClientCustomAppBar(btn: false, isSearch: false),
+          ClientCustomAppBar(
+            btn: false,
+            isSearch: false,
+          ),
           Expanded(
             child: StreamBuilder(
                 stream: Services.getMyUsers(),
