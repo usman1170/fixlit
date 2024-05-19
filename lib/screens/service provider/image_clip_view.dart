@@ -1,5 +1,5 @@
+import 'package:fixlit/main.dart';
 import 'package:fixlit/screens/service%20provider/image_view.dart';
-import 'package:fixlit/utils/pallate.dart';
 import 'package:flutter/material.dart';
 
 class ImageViewerClip extends StatelessWidget {
@@ -50,7 +50,7 @@ class ImageViewerClip extends StatelessWidget {
                   ),
                   child: Center(
                     child: CircularProgressIndicator(
-                      color: Colors.blue,
+                      color: darkColor,
                       value: loadingProgress.expectedTotalBytes != null
                           ? loadingProgress.cumulativeBytesLoaded /
                               (loadingProgress.expectedTotalBytes ?? 1)
@@ -72,7 +72,7 @@ class ImageViewerClip extends StatelessWidget {
                 child: Icon(
                   Icons.person,
                   size: 28,
-                  color: Clrs.mainColor,
+                  color: darkColor,
                 ),
               );
             },

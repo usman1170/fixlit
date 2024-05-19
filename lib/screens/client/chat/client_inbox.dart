@@ -101,7 +101,7 @@ class _ClientInboxState extends State<ClientInbox> {
       //     height: 62,
       //     width: MediaQuery.of(context).size.width,
       //     decoration: BoxDecoration(
-      //       color: Clrs.mainColor,
+      //       color: darkColor,
       //       borderRadius: BorderRadius.circular(30),
       //     ),
       //     child: Row(
@@ -124,7 +124,7 @@ class _ClientInboxState extends State<ClientInbox> {
       //           },
       //           title: 'Home',
       //           icon: Icons.home,
-      //           color: homeScreen ? Colors.orange : Clrs.mainColor,
+      //           color: homeScreen ? Colors.orange : darkColor,
       //         ),
       //         BottomSheetButton(
       //           ontap: () {
@@ -136,7 +136,7 @@ class _ClientInboxState extends State<ClientInbox> {
       //           },
       //           title: 'Inbox',
       //           icon: Icons.inbox,
-      //           color: inboxScreen ? Colors.orange : Clrs.mainColor,
+      //           color: inboxScreen ? Colors.orange : darkColor,
       //         ),
       //         BottomSheetButton(
       //           ontap: () {
@@ -155,7 +155,7 @@ class _ClientInboxState extends State<ClientInbox> {
       //           },
       //           title: 'Profile',
       //           icon: Icons.person,
-      //           color: profileScreen ? Colors.orange : Clrs.mainColor,
+      //           color: profileScreen ? Colors.orange : darkColor,
       //         ),
       //       ],
       //     ),

@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors, use_build_context_synchronously
 
 import 'dart:io';
+import 'package:fixlit/main.dart';
 import 'package:fixlit/models/client_model.dart';
 import 'package:fixlit/services/apis.dart';
-import 'package:fixlit/utils/pallate.dart';
 import 'package:fixlit/widgets/buttons.dart';
 import 'package:fixlit/widgets/dialogs.dart';
 import 'package:flutter/material.dart';
@@ -30,13 +30,13 @@ class _ClientEditProfileState extends State<ClientEditProfile> {
       child: Scaffold(
         appBar: AppBar(
           leading: BackPopButton(
-            color: Clrs.mainColor,
+            color: darkColor,
             bgcolor: Colors.white,
           ),
           title: Text(
             "Profile Update",
             style: TextStyle(
-              color: Clrs.mainColor,
+              color: darkColor,
             ),
           ),
         ),
@@ -92,7 +92,7 @@ class _ClientEditProfileState extends State<ClientEditProfile> {
                                                 width: 100,
                                                 height: 100,
                                                 decoration: BoxDecoration(
-                                                  color: Colors.blue.shade400,
+                                                  color: darkColor,
                                                   borderRadius:
                                                       BorderRadius.circular(50),
                                                 ),
@@ -149,7 +149,7 @@ class _ClientEditProfileState extends State<ClientEditProfile> {
                                                 width: 100,
                                                 height: 100,
                                                 decoration: BoxDecoration(
-                                                  color: Clrs.mainColor,
+                                                  color: darkColor,
                                                   borderRadius:
                                                       BorderRadius.circular(50),
                                                 ),
@@ -187,7 +187,7 @@ class _ClientEditProfileState extends State<ClientEditProfile> {
                             Text(
                               user.email,
                               style: TextStyle(
-                                color: Clrs.mainColor,
+                                color: darkColor,
                                 letterSpacing: 0.8,
                                 fontSize: 18,
                               ),
@@ -209,14 +209,13 @@ class _ClientEditProfileState extends State<ClientEditProfile> {
                                 ),
                                 prefixIcon: Icon(Icons.person),
                                 hintText: "Enter name",
-                                prefixIconColor: Clrs.mainColor,
+                                prefixIconColor: darkColor,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20)),
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(30)),
-                                    borderSide:
-                                        BorderSide(color: Clrs.mainColor)),
+                                    borderSide: BorderSide(color: darkColor)),
                                 contentPadding: EdgeInsets.only(
                                   top: 18,
                                   bottom: 18,
@@ -241,7 +240,7 @@ class _ClientEditProfileState extends State<ClientEditProfile> {
                                   ),
                                   prefixIcon: const Icon(Icons.info),
                                   hintText: "Enter your Email",
-                                  prefixIconColor: Clrs.mainColor,
+                                  prefixIconColor: darkColor,
                                   hintStyle: const TextStyle(
                                     fontSize: 14,
                                     color: Colors.grey,
@@ -251,8 +250,7 @@ class _ClientEditProfileState extends State<ClientEditProfile> {
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(30)),
-                                    borderSide:
-                                        BorderSide(color: Clrs.mainColor),
+                                    borderSide: BorderSide(color: darkColor),
                                   ),
                                   contentPadding: const EdgeInsets.only(
                                     top: 18,
@@ -270,7 +268,7 @@ class _ClientEditProfileState extends State<ClientEditProfile> {
         floatingActionButton: Padding(
           padding: const EdgeInsets.only(bottom: 12, right: 12),
           child: FloatingActionButton.extended(
-            backgroundColor: Clrs.mainColor,
+            backgroundColor: darkColor,
             onPressed: () async {
               print(Services.client.name);
               setState(() {

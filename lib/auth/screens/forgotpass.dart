@@ -1,5 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fixlit/auth/widgets/loading_screen.dart';
+import 'package:fixlit/main.dart';
 import 'package:fixlit/services/apis.dart';
 import 'package:fixlit/widgets/dialogs.dart';
 import 'package:fixlit/widgets/grey_text.dart';
@@ -34,75 +36,32 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     mycolor = Colors.deepPurple.shade400;
     mq = MediaQuery.of(context).size;
     return isLoading
-        ? Container(
-            decoration: BoxDecoration(
-              color: mycolor,
-              image: const DecorationImage(
-                image: AssetImage("assets/imgs/bg3.jpg"),
-                fit: BoxFit.cover,
-                // colorFilter: ColorFilter.mode(
-                //     mycolor.withOpacity(0.2), BlendMode.dstATop),
-              ),
-            ),
-            child: const Scaffold(
-              backgroundColor: Colors.transparent,
-              body: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    CircleAvatar(
-                      radius: 55,
-                      backgroundImage: AssetImage('assets/icon/playstore.png'),
+        ? const LoadingScreen()
+        : GestureDetector(
+            onTap: () {
+              FocusScope.of(context).unfocus();
+            },
+            child: Scaffold(
+              backgroundColor: Colors.white,
+              body: Stack(
+                children: [
+                  Positioned(
+                    top: 0,
+                    child: Container(
+                      height: 38,
+                      width: MediaQuery.of(context).size.width,
+                      color: darkColor,
                     ),
-                    SizedBox(height: 30),
-                    Text(
-                      'Please wait...',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    CircularProgressIndicator(
-                      strokeWidth: 2,
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          )
-        : Container(
-            decoration: BoxDecoration(
-              color: mycolor,
-              image: const DecorationImage(
-                image: AssetImage("assets/imgs/bg3.jpg"),
-                fit: BoxFit.cover,
-                // colorFilter: ColorFilter.mode(
-                //     mycolor.withOpacity(0.2), BlendMode.dstATop),
-              ),
-            ),
-            child: GestureDetector(
-              onTap: () {
-                FocusScope.of(context).unfocus();
-              },
-              child: Scaffold(
-                backgroundColor: Colors.transparent,
-                body: Stack(
-                  children: [
-                    Positioned(
-                      top: mq.height * .1,
-                      child: _mainTopBuild(),
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      child: _bottomBuild(),
-                    ),
-                  ],
-                ),
+                  ),
+                  Positioned(
+                    top: mq.height * .1,
+                    child: _mainTopBuild(),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    child: _bottomBuild(),
+                  ),
+                ],
               ),
             ),
           );
@@ -134,7 +93,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               fontWeight: FontWeight.w700,
               shadows: [
                 Shadow(
-                  color: Colors.blue,
+                  color: darkColor,
                   blurRadius: 8,
                   offset: Offset(1, 2),
                 )
@@ -178,7 +137,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           style: TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.w600,
-              color: Colors.blue,
+              color: darkColor,
               letterSpacing: .4),
         ),
         greyText("Forgot your password?"),
@@ -198,13 +157,13 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             prefixIcon: const Icon(Icons.email),
             hintText: "Enter Email",
             hintStyle: const TextStyle(fontSize: 13, color: Colors.grey),
-            prefixIconColor: Colors.blue,
+            prefixIconColor: darkColor,
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
             focusedBorder: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(20),
                 ),
-                borderSide: BorderSide(color: Colors.blue)),
+                borderSide: BorderSide(color: darkColor)),
             contentPadding: const EdgeInsets.only(
               top: 18,
               bottom: 18,
@@ -228,9 +187,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         ElevatedButton(
           style: ElevatedButton.styleFrom(
               shape: const StadiumBorder(),
-              backgroundColor: Colors.blue,
+              backgroundColor: darkColor,
               elevation: 8,
-              shadowColor: Colors.blue,
+              shadowColor: darkColor,
               minimumSize: const Size.fromHeight(55)),
           onPressed: () {
             Navigator.of(context).pop();
@@ -270,9 +229,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           shape: const StadiumBorder(),
-          backgroundColor: Colors.blue,
+          backgroundColor: darkColor,
           elevation: 8,
-          shadowColor: Colors.blue,
+          shadowColor: darkColor,
           minimumSize: const Size.fromHeight(55)),
       onPressed: () async {
         setState(() {

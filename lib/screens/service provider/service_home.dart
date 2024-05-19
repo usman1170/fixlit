@@ -1,10 +1,9 @@
 // ignore_for_file: avoid_print
 import 'dart:async';
+import 'package:fixlit/main.dart';
 import 'package:fixlit/screens/service%20provider/image_clip_view.dart';
 import 'package:fixlit/services/apis.dart';
-import 'package:fixlit/utils/pallate.dart';
 import 'package:fixlit/widgets/animated_text_and_method.dart';
-import 'package:fixlit/widgets/drawers.dart';
 import 'package:flutter/material.dart';
 
 class ServiceProviderHome extends StatefulWidget {
@@ -40,9 +39,9 @@ class _ServiceProviderHomeState extends State<ServiceProviderHome> {
               Container(
                 width: MediaQuery.of(context).size.width,
                 padding: const EdgeInsets.symmetric(vertical: 28),
-                decoration: BoxDecoration(
-                  color: Clrs.mainColor,
-                  borderRadius: const BorderRadius.only(
+                decoration: const BoxDecoration(
+                  color: darkColor,
+                  borderRadius: BorderRadius.only(
                     bottomRight: Radius.circular(50),
                   ),
                 ),
@@ -229,15 +228,15 @@ class _ServiceProviderHomeState extends State<ServiceProviderHome> {
                       //       borderRadius: BorderRadius.circular(30),
                       //       gradient: user.available
                       //           ? LinearGradient(colors: [
-                      //               Clrs.mainColor,
-                      //               Colors.blue.shade600,
-                      //               Colors.blue.shade500,
+                      //               darkColor,
+                      //               darkColor.shade600,
+                      //               darkColor.shade500,
                       //             ])
                       //           : LinearGradient(
                       //               colors: [
-                      //                 Colors.blue.shade500,
-                      //                 Colors.blue.shade600,
-                      //                 Clrs.mainColor,
+                      //                 darkColor.shade500,
+                      //                 darkColor.shade600,
+                      //                 darkColor,
                       //               ],
                       //             )),
                       //   child: SwitchListTile(
@@ -292,7 +291,7 @@ class _ServiceProviderHomeState extends State<ServiceProviderHome> {
                                       style: TextStyle(
                                         fontSize: 22,
                                         fontFamily: "roboto",
-                                        fontWeight: FontWeight.w900,
+                                        fontWeight: FontWeight.w800,
                                       ),
                                     ),
                                   ],
@@ -371,7 +370,7 @@ class _ServiceProviderHomeState extends State<ServiceProviderHome> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 18, vertical: 16),
                         decoration: BoxDecoration(
-                          color: Colors.orangeAccent.shade400.withOpacity(.7),
+                          color: yellowColor,
                           borderRadius: BorderRadius.circular(30),
                         ),
                         child: const Center(
@@ -385,8 +384,8 @@ class _ServiceProviderHomeState extends State<ServiceProviderHome> {
                                     Text(
                                       "Customer Care",
                                       style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.w800,
                                         // color: Colors.white,
                                       ),
                                     ),
@@ -400,6 +399,9 @@ class _ServiceProviderHomeState extends State<ServiceProviderHome> {
                                   style: TextStyle(
                                       // color: Colors.white
                                       ),
+                                ),
+                                SizedBox(
+                                  height: 12,
                                 ),
                               ],
                             ),
@@ -434,8 +436,8 @@ class _ServiceProviderHomeState extends State<ServiceProviderHome> {
           //       width: MediaQuery.of(context).size.width * .6,
           //       decoration: BoxDecoration(
           //         gradient: LinearGradient(colors: [
-          //           Clrs.mainColor,
-          //           Colors.blue.shade600,
+          //           darkColor,
+          //           darkColor.shade600,
           //         ]),
           //         borderRadius: BorderRadius.circular(30),
           //       ),
@@ -467,7 +469,6 @@ class _ServiceProviderHomeState extends State<ServiceProviderHome> {
           // )
         ],
       ),
-      drawer: const MyDrawer(),
     );
   }
 }

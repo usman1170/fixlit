@@ -1,6 +1,6 @@
+import 'package:fixlit/main.dart';
 import 'package:fixlit/screens/client/all_catagory_page.dart';
 import 'package:fixlit/screens/client/catagory_card_result.dart';
-import 'package:fixlit/utils/pallate.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -23,12 +23,12 @@ class _UpperCatagoryHeaderState extends State<UpperCatagoryHeader> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   "Browse by Catagory",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
-                    color: Clrs.mainColor,
+                    color: darkColor,
                   ),
                 ),
                 InkWell(
@@ -126,8 +126,8 @@ class CatagoryWidget extends StatelessWidget {
         ),
         Text(
           title,
-          style: TextStyle(
-            color: Clrs.mainColor,
+          style: const TextStyle(
+            color: darkColor,
             fontSize: 14,
             fontWeight: FontWeight.w500,
           ),

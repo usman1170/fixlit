@@ -1,7 +1,6 @@
 // ignore_for_file: must_be_immutable
 import 'package:fixlit/main.dart';
 import 'package:fixlit/services/apis.dart';
-import 'package:fixlit/utils/pallate.dart';
 import 'package:flutter/material.dart';
 
 class ServiceCustomAppBar extends StatelessWidget {
@@ -18,9 +17,9 @@ class ServiceCustomAppBar extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.symmetric(vertical: 18),
       // height: 100,
-      decoration: BoxDecoration(
-        color: Clrs.mainColor,
-        borderRadius: const BorderRadius.only(
+      decoration: const BoxDecoration(
+        color: darkColor,
+        borderRadius: BorderRadius.only(
           bottomRight: Radius.circular(50),
         ),
       ),
@@ -88,10 +87,10 @@ class ServiceCustomAppBar extends StatelessWidget {
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(50),
                               ),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.person,
                                 size: 28,
-                                color: Clrs.mainColor,
+                                color: darkColor,
                               ),
                             );
                           },
@@ -106,10 +105,10 @@ class ServiceCustomAppBar extends StatelessWidget {
                         shape: BoxShape.circle,
                         color: Colors.grey.shade100,
                       ),
-                      child: Center(
+                      child: const Center(
                         child: Icon(
                           Icons.person,
-                          color: Clrs.mainColor,
+                          color: darkColor,
                           size: 28,
                         ),
                       ),

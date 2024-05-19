@@ -5,7 +5,6 @@ import 'package:fixlit/screens/client/chat/client_chat_screen.dart';
 import 'package:fixlit/screens/client/service_provider/address_detail_widget.dart';
 import 'package:fixlit/screens/client/service_provider/upper_contaier.dart';
 import 'package:fixlit/services/apis.dart';
-import 'package:fixlit/utils/pallate.dart';
 import 'package:fixlit/widgets/dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -44,8 +43,8 @@ class _ServiceProviderDetailsState extends State<ServiceProviderDetails> {
                   ),
                   Text(
                     data.email,
-                    style: TextStyle(
-                        color: Clrs.mainColor,
+                    style: const TextStyle(
+                        color: darkColor,
                         fontSize: 16,
                         fontWeight: FontWeight.w600),
                   ),
@@ -56,17 +55,38 @@ class _ServiceProviderDetailsState extends State<ServiceProviderDetails> {
                     margin: EdgeInsets.symmetric(
                       horizontal: MediaQuery.of(context).size.width * .06,
                     ),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     height: 55,
                     width: MediaQuery.of(context).size.width,
                     decoration: const BoxDecoration(
-                      color: Colors.blue,
+                      color: darkColor,
                       borderRadius: BorderRadius.all(
                         Radius.circular(12),
                       ),
                     ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.phone,
+                              size: 22,
+                              color: Colors.white,
+                            ),
+                            const SizedBox(
+                              width: 18,
+                            ),
+                            Text(
+                              data.phone,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
                         InkWell(
                           onTap: () async {
                             await Clipboard.setData(
@@ -83,36 +103,6 @@ class _ServiceProviderDetailsState extends State<ServiceProviderDetails> {
                             color: Colors.white,
                           ),
                         ),
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.phone,
-                              size: 22,
-                              color: Colors.white,
-                            ),
-                            const SizedBox(
-                              width: 6,
-                            ),
-                            const Text(
-                              ":",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            const SizedBox(
-                              width: 16,
-                            ),
-                            Text(
-                              data.phone,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        )
                       ],
                     ),
                   ),
@@ -157,7 +147,7 @@ class _ServiceProviderDetailsState extends State<ServiceProviderDetails> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
-                        color: Clrs.mainColor,
+                        color: darkColor,
                       ),
                     ),
                     child: ListView(
@@ -202,10 +192,10 @@ class _ServiceProviderDetailsState extends State<ServiceProviderDetails> {
                 height: 55,
                 width: mq.width * .64,
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: [
-                    Clrs.mainColor,
-                    Colors.blue.shade900,
-                    Colors.blue.shade600,
+                  gradient: const LinearGradient(colors: [
+                    Colors.black87,
+                    darkColor,
+                    darkColor,
                   ]),
                   borderRadius: BorderRadius.circular(30),
                 ),

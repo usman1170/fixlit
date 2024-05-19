@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, use_build_context_synchronously, must_be_immutable
 
 import 'dart:io';
+import 'package:fixlit/main.dart';
 import 'package:fixlit/models/service_provider_model.dart';
 import 'package:fixlit/services/apis.dart';
 import 'package:fixlit/widgets/buttons.dart';
@@ -30,13 +31,13 @@ class _ServiceEditProfileScreenState extends State<ServiceEditProfileScreen> {
       child: Scaffold(
         appBar: AppBar(
           leading: BackPopButton(
-            color: Colors.blue.shade700,
+            color: darkColor,
             bgcolor: Colors.blue.shade50.withOpacity(.6),
           ),
           title: Text(
             "Profile Update",
             style: TextStyle(
-              color: Colors.blue.shade700,
+              color: darkColor,
             ),
           ),
         ),
@@ -187,7 +188,7 @@ class _ServiceEditProfileScreenState extends State<ServiceEditProfileScreen> {
                             Text(
                               user.email,
                               style: TextStyle(
-                                color: Colors.blue.shade700,
+                                color: darkColor,
                                 letterSpacing: 0.8,
                                 fontSize: 18,
                               ),
@@ -208,13 +209,13 @@ class _ServiceEditProfileScreenState extends State<ServiceEditProfileScreen> {
                                 ),
                                 prefixIcon: Icon(Icons.person),
                                 hintText: "Enter name",
-                                prefixIconColor: Colors.blue,
+                                prefixIconColor: darkColor,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20)),
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(30)),
-                                    borderSide: BorderSide(color: Colors.blue)),
+                                    borderSide: BorderSide(color: darkColor)),
                                 contentPadding: EdgeInsets.only(
                                   top: 18,
                                   bottom: 18,
@@ -238,13 +239,13 @@ class _ServiceEditProfileScreenState extends State<ServiceEditProfileScreen> {
                                 ),
                                 prefixIcon: Icon(Icons.location_city),
                                 hintText: "Enter your City",
-                                prefixIconColor: Colors.blue,
+                                prefixIconColor: darkColor,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20)),
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(30)),
-                                    borderSide: BorderSide(color: Colors.blue)),
+                                    borderSide: BorderSide(color: darkColor)),
                                 contentPadding: EdgeInsets.only(
                                   top: 18,
                                   bottom: 18,
@@ -268,13 +269,13 @@ class _ServiceEditProfileScreenState extends State<ServiceEditProfileScreen> {
                                 ),
                                 prefixIcon: Icon(Icons.person),
                                 hintText: "Enter Address here",
-                                prefixIconColor: Colors.blue,
+                                prefixIconColor: darkColor,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20)),
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(30)),
-                                    borderSide: BorderSide(color: Colors.blue)),
+                                    borderSide: BorderSide(color: darkColor)),
                                 contentPadding: EdgeInsets.only(
                                   top: 18,
                                   bottom: 18,
@@ -298,13 +299,13 @@ class _ServiceEditProfileScreenState extends State<ServiceEditProfileScreen> {
                                 ),
                                 prefixIcon: Icon(Icons.person),
                                 hintText: "Enter Phone no here",
-                                prefixIconColor: Colors.blue,
+                                prefixIconColor: darkColor,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20)),
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(30)),
-                                    borderSide: BorderSide(color: Colors.blue)),
+                                    borderSide: BorderSide(color: darkColor)),
                                 contentPadding: EdgeInsets.only(
                                   top: 18,
                                   bottom: 18,
@@ -328,13 +329,13 @@ class _ServiceEditProfileScreenState extends State<ServiceEditProfileScreen> {
                                 ),
                                 prefixIcon: Icon(Icons.punch_clock),
                                 hintText: "Update your Scheduling here",
-                                prefixIconColor: Colors.blue,
+                                prefixIconColor: darkColor,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20)),
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(30)),
-                                    borderSide: BorderSide(color: Colors.blue)),
+                                    borderSide: BorderSide(color: darkColor)),
                                 contentPadding: EdgeInsets.only(
                                   top: 18,
                                   bottom: 18,
@@ -360,13 +361,13 @@ class _ServiceEditProfileScreenState extends State<ServiceEditProfileScreen> {
                                 prefixIcon: Icon(Icons.text_format),
                                 hintText:
                                     "Enter your bio and explain your experince here",
-                                prefixIconColor: Colors.blue,
+                                prefixIconColor: darkColor,
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20)),
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(30)),
-                                    borderSide: BorderSide(color: Colors.blue)),
+                                    borderSide: BorderSide(color: darkColor)),
                                 contentPadding: EdgeInsets.only(
                                   top: 18,
                                   bottom: 18,
@@ -387,7 +388,7 @@ class _ServiceEditProfileScreenState extends State<ServiceEditProfileScreen> {
         floatingActionButton: Padding(
           padding: const EdgeInsets.only(bottom: 12, right: 12),
           child: FloatingActionButton.extended(
-            backgroundColor: Colors.blue.shade600,
+            backgroundColor: darkColor,
             onPressed: () async {
               FocusScope.of(context).unfocus();
               if (_formKey.currentState!.validate()) {

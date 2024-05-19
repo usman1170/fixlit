@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fixlit/auth/screens/login.dart';
 import 'package:fixlit/auth/screens/veify.dart';
 import 'package:fixlit/auth/widgets/loading_screen.dart';
+import 'package:fixlit/main.dart';
 import 'package:fixlit/models/client_model.dart';
 import 'package:fixlit/models/service_provider_model.dart';
 import 'package:fixlit/models/user_model.dart';
@@ -214,28 +215,27 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
     mq = MediaQuery.of(context).size;
     return isLoading
         ? const LoadingScreen()
-        : Container(
-            decoration: BoxDecoration(
-              color: mycolor,
-              image: const DecorationImage(
-                image: AssetImage("assets/imgs/bg3.jpg"),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: Scaffold(
-              backgroundColor: Colors.transparent,
-              body: Stack(
-                children: [
-                  Positioned(
-                    top: mq.height * .08,
-                    child: _mainTopBuild(),
+        : Scaffold(
+            backgroundColor: Colors.white,
+            body: Stack(
+              children: [
+                Positioned(
+                  top: 0,
+                  child: Container(
+                    height: 38,
+                    width: MediaQuery.of(context).size.width,
+                    color: darkColor,
                   ),
-                  Positioned(
-                    bottom: 0,
-                    child: _bottomBuild(),
-                  ),
-                ],
-              ),
+                ),
+                Positioned(
+                  top: mq.height * .08,
+                  child: _mainTopBuild(),
+                ),
+                Positioned(
+                  bottom: 0,
+                  child: _bottomBuild(),
+                ),
+              ],
             ),
           );
   }
@@ -252,8 +252,10 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
             height: 110,
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
+              image: DecorationImage(
+                image: AssetImage("assets/icon/playstore.png"),
+              ),
             ),
-            child: Image.asset('assets/icon/playstore.png'),
           ),
           const SizedBox(
             height: 12,
@@ -261,12 +263,9 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
           const Text(
             "FixLit Hub",
             style: TextStyle(
-              color: Colors.white,
+              color: darkColor,
               fontSize: 28,
               fontWeight: FontWeight.w700,
-              shadows: [
-                Shadow(color: Colors.blue, blurRadius: 8, offset: Offset(1, 2))
-              ],
             ),
           )
         ],
@@ -311,9 +310,9 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                 height: 42,
                 width: 105,
                 decoration: BoxDecoration(
-                  color: userType == 'client' ? Colors.blue : null,
+                  color: userType == 'client' ? darkColor : null,
                   border: Border.all(
-                    color: userType == 'client' ? Colors.white : Colors.blue,
+                    color: userType == 'client' ? Colors.white : darkColor,
                   ),
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -321,7 +320,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                   child: Text(
                     'Client',
                     style: TextStyle(
-                      color: userType == 'client' ? Colors.white : Colors.blue,
+                      color: userType == 'client' ? Colors.white : darkColor,
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                     ),
@@ -335,11 +334,11 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                 height: 42,
                 width: 180,
                 decoration: BoxDecoration(
-                  color: userType == 'serviceProvider' ? Colors.blue : null,
+                  color: userType == 'serviceProvider' ? darkColor : null,
                   border: Border.all(
                     color: userType == 'serviceProvider'
                         ? Colors.white
-                        : Colors.blue,
+                        : darkColor,
                   ),
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -349,7 +348,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                     style: TextStyle(
                       color: userType == 'serviceProvider'
                           ? Colors.white
-                          : Colors.blue,
+                          : darkColor,
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                     ),
@@ -367,7 +366,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
           style: TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.w600,
-              color: Colors.blue,
+              color: darkColor,
               letterSpacing: .4),
         ),
         greyText("Please Enter your Email and password"),
@@ -437,7 +436,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
-                  color: Colors.blue,
+                  color: darkColor,
                 ),
               )
             ],
@@ -463,9 +462,9 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                 height: 42,
                 width: 105,
                 decoration: BoxDecoration(
-                  color: userType == 'client' ? Colors.blue : null,
+                  color: userType == 'client' ? darkColor : null,
                   border: Border.all(
-                    color: userType == 'client' ? Colors.white : Colors.blue,
+                    color: userType == 'client' ? Colors.white : darkColor,
                   ),
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -473,7 +472,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                   child: Text(
                     'Client',
                     style: TextStyle(
-                      color: userType == 'client' ? Colors.white : Colors.blue,
+                      color: userType == 'client' ? Colors.white : darkColor,
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                     ),
@@ -487,11 +486,11 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                 height: 42,
                 width: 180,
                 decoration: BoxDecoration(
-                  color: userType == 'serviceProvider' ? Colors.blue : null,
+                  color: userType == 'serviceProvider' ? darkColor : null,
                   border: Border.all(
                     color: userType == 'serviceProvider'
                         ? Colors.white
-                        : Colors.blue,
+                        : darkColor,
                   ),
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -501,7 +500,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                     style: TextStyle(
                       color: userType == 'serviceProvider'
                           ? Colors.white
-                          : Colors.blue,
+                          : darkColor,
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                     ),
@@ -519,7 +518,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
           style: TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.w600,
-              color: Colors.blue,
+              color: darkColor,
               letterSpacing: .4),
         ),
         greyText("Please Enter your Email and password"),
@@ -544,7 +543,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
             prefixIcon: const Icon(Icons.info),
             hintText: "Select Service Category",
             hintStyle: const TextStyle(fontSize: 13, color: Colors.grey),
-            prefixIconColor: Colors.blue,
+            prefixIconColor: darkColor,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20),
             ),
@@ -552,7 +551,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
               borderRadius: BorderRadius.all(
                 Radius.circular(20),
               ),
-              borderSide: BorderSide(color: Colors.blue),
+              borderSide: BorderSide(color: darkColor),
             ),
             contentPadding:
                 const EdgeInsets.only(top: 18, bottom: 18, right: 10),
@@ -643,7 +642,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
-                  color: Colors.blue,
+                  color: darkColor,
                 ),
               )
             ],
@@ -690,13 +689,13 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                     ? "Enter Service Catagory"
                     : "Enter Email",
         hintStyle: const TextStyle(fontSize: 13, color: Colors.grey),
-        prefixIconColor: Colors.blue,
+        prefixIconColor: darkColor,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
         focusedBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(20),
           ),
-          borderSide: BorderSide(color: Colors.blue),
+          borderSide: BorderSide(color: darkColor),
         ),
         contentPadding: const EdgeInsets.only(
           top: 18,
@@ -712,7 +711,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                 },
                 child: const Icon(
                   Icons.remove_red_eye,
-                  color: Colors.blue,
+                  color: darkColor,
                 ))
             : const SizedBox(),
       ),
@@ -725,9 +724,9 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           shape: const StadiumBorder(),
-          backgroundColor: Colors.blue,
+          backgroundColor: darkColor,
           elevation: 8,
-          shadowColor: Colors.blue,
+          shadowColor: darkColor,
           minimumSize: const Size.fromHeight(55)),
       onPressed: ontap,
       child: const Text(

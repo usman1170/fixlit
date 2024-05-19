@@ -1,5 +1,6 @@
 import 'package:fixlit/auth/screens/forgotpass.dart';
 import 'package:fixlit/auth/widgets/auth_dialogs.dart';
+import 'package:fixlit/main.dart';
 import 'package:fixlit/models/service_provider_model.dart';
 import 'package:fixlit/screens/service%20provider/image_view.dart';
 import 'package:fixlit/screens/service%20provider/profile/edit_profile.dart';
@@ -18,10 +19,10 @@ class _ServiceProfileScreenState extends State<ServiceProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: darkColor,
       appBar: AppBar(
         leading: const SizedBox(),
-        backgroundColor: Colors.blue,
+        backgroundColor: darkColor,
         title: const Text(
           "Service Provider",
           style: TextStyle(
@@ -110,7 +111,7 @@ class _ServiceProfileScreenState extends State<ServiceProfileScreen> {
                     child: const Icon(
                       Icons.person,
                       size: 50,
-                      color: Colors.blue,
+                      color: darkColor,
                     ),
                   );
                 },

@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:fixlit/main.dart';
 import 'package:fixlit/services/apis.dart';
-import 'package:fixlit/utils/pallate.dart';
 import 'package:fixlit/widgets/client_home/upper_catagory_header.dart';
 import 'package:fixlit/widgets/client_home/main_header.dart';
 import 'package:flutter/material.dart';
@@ -50,15 +50,15 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
               const SizedBox(
                 height: 18,
               ),
-              Row(
+              const Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 14),
+                    padding: EdgeInsets.only(left: 14),
                     child: Text(
                       "Popular Services",
                       style: TextStyle(
                         fontSize: 20,
-                        color: Clrs.mainColor,
+                        color: darkColor,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -99,10 +99,10 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
   }
 
   Widget buildIndicator() => AnimatedSmoothIndicator(
-        effect: ExpandingDotsEffect(
+        effect: const ExpandingDotsEffect(
           dotWidth: 15,
           dotHeight: 6,
-          activeDotColor: Clrs.mainColor,
+          activeDotColor: darkColor,
         ),
         activeIndex: activeIndex,
         count: images.length,
@@ -112,8 +112,7 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(25),
-            border:
-                Border.all(color: Clrs.mainColor.withOpacity(.35), width: 4),
+            border: Border.all(color: darkColor.withOpacity(.35), width: 4),
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(25),

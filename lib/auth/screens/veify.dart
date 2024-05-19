@@ -2,6 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fixlit/auth/screens/login.dart';
 import 'package:fixlit/auth/widgets/loading_screen.dart';
+import 'package:fixlit/main.dart';
 import 'package:fixlit/widgets/dialogs.dart';
 import 'package:fixlit/widgets/grey_text.dart';
 import 'package:flutter/material.dart';
@@ -67,8 +68,10 @@ class _NewVerifyViewState extends State<NewVerifyView> {
             height: 110,
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
+              image: DecorationImage(
+                image: AssetImage("assets/icon/playstore.png"),
+              ),
             ),
-            child: Image.asset('assets/icon/playstore.png'),
           ),
           const SizedBox(
             height: 12,
@@ -80,7 +83,7 @@ class _NewVerifyViewState extends State<NewVerifyView> {
               fontSize: 28,
               fontWeight: FontWeight.w700,
               shadows: [
-                Shadow(color: Colors.blue, blurRadius: 8, offset: Offset(1, 2))
+                Shadow(color: darkColor, blurRadius: 8, offset: Offset(1, 2))
               ],
             ),
           )
@@ -121,7 +124,7 @@ class _NewVerifyViewState extends State<NewVerifyView> {
           style: TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.w600,
-              color: Colors.blue,
+              color: darkColor,
               letterSpacing: .4),
         ),
         greyText("Please Verify yourself"),
@@ -164,9 +167,9 @@ class _NewVerifyViewState extends State<NewVerifyView> {
         ElevatedButton(
           style: ElevatedButton.styleFrom(
               shape: const StadiumBorder(),
-              backgroundColor: Colors.blue,
+              backgroundColor: darkColor,
               elevation: 8,
-              shadowColor: Colors.blue,
+              shadowColor: darkColor,
               minimumSize: const Size.fromHeight(55)),
           onPressed: () {
             Navigator.pushReplacement(
@@ -196,9 +199,9 @@ class _NewVerifyViewState extends State<NewVerifyView> {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           shape: const StadiumBorder(),
-          backgroundColor: Colors.blue,
+          backgroundColor: darkColor,
           elevation: 8,
-          shadowColor: Colors.blue,
+          shadowColor: darkColor,
           minimumSize: const Size.fromHeight(55)),
       onPressed: () async {
         setState(() {

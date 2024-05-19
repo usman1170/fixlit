@@ -1,9 +1,9 @@
 // ignore_for_file: avoid_print
+import 'package:fixlit/main.dart';
 import 'package:fixlit/models/service_provider_model.dart';
 import 'package:fixlit/screens/client/service_provider/service_provider_details.dart';
 import 'package:fixlit/screens/service%20provider/image_clip_view.dart';
 import 'package:fixlit/services/apis.dart';
-import 'package:fixlit/utils/pallate.dart';
 import 'package:fixlit/widgets/client_home/main_header.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +42,7 @@ class _SearchedCatagoryState extends State<SearchedCatagory> {
                 Text(
                   'Showing Result For "$catagory"',
                   style: TextStyle(
-                    color: Clrs.mainColor,
+                    color: darkColor,
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
                   ),

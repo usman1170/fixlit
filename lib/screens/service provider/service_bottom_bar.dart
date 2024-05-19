@@ -1,8 +1,8 @@
+import 'package:fixlit/main.dart';
 import 'package:fixlit/screens/service%20provider/chat/service_inbox.dart';
 import 'package:fixlit/screens/service%20provider/profile/service_profile.dart';
 import 'package:fixlit/screens/service%20provider/service_home.dart';
 import 'package:fixlit/services/apis.dart';
-import 'package:fixlit/utils/pallate.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -36,13 +36,13 @@ class _ServiceBottomNavigationBarState
         decoration: BoxDecoration(boxShadow: [
           BoxShadow(
             blurRadius: 25,
-            color: Colors.blue.withOpacity(.27),
+            color: Colors.black54.withOpacity(.27),
           )
         ]),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(30),
           child: BottomNavigationBar(
-            backgroundColor: Clrs.mainColor,
+            backgroundColor: darkColor,
             selectedItemColor: Colors.white,
             unselectedItemColor: Colors.white,
             currentIndex: myCurrentindex,

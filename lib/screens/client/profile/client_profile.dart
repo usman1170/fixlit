@@ -1,9 +1,9 @@
 import 'package:fixlit/auth/screens/forgotpass.dart';
 import 'package:fixlit/auth/widgets/auth_dialogs.dart';
+import 'package:fixlit/main.dart';
 import 'package:fixlit/models/client_model.dart';
 import 'package:fixlit/screens/client/profile/client_edit.dart';
 import 'package:fixlit/services/apis.dart';
-import 'package:fixlit/utils/pallate.dart';
 import 'package:flutter/material.dart';
 
 class ClientProfileScreen extends StatefulWidget {
@@ -22,10 +22,10 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Clrs.mainColor,
+      backgroundColor: darkColor,
       appBar: AppBar(
         leading: Container(),
-        backgroundColor: Clrs.mainColor,
+        backgroundColor: darkColor,
         title: const Text(
           "Profile",
           style: TextStyle(
@@ -106,7 +106,7 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
                   child: const Icon(
                     Icons.person,
                     size: 50,
-                    color: Colors.blue,
+                    color: darkColor,
                   ),
                 );
               },

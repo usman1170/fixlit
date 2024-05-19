@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fixlit/main.dart';
 import 'package:fixlit/models/message_model.dart';
 import 'package:fixlit/screens/client/chat/date_util.dart';
 import 'package:fixlit/services/apis.dart';
-import 'package:fixlit/utils/pallate.dart';
 import 'package:fixlit/widgets/dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -62,7 +62,7 @@ class _MassageCardState extends State<MassageCard> {
                 ? _OptionItem(
                     icon: const Icon(
                       Icons.copy_all_rounded,
-                      color: Colors.blue,
+                      color: darkColor,
                       size: 26,
                     ),
                     name: "Copy text",
@@ -79,7 +79,7 @@ class _MassageCardState extends State<MassageCard> {
                 : _OptionItem(
                     icon: const Icon(
                       Icons.download_rounded,
-                      color: Colors.blue,
+                      color: darkColor,
                       size: 26,
                     ),
                     name: "Save image",
@@ -143,7 +143,7 @@ class _MassageCardState extends State<MassageCard> {
             _OptionItem(
               icon: const Icon(
                 Icons.remove_red_eye,
-                color: Colors.blue,
+                color: darkColor,
                 size: 26,
               ),
               name:
@@ -185,7 +185,7 @@ class _MassageCardState extends State<MassageCard> {
             children: [
               const Icon(
                 Icons.message,
-                color: Colors.blue,
+                color: darkColor,
                 size: 28,
               ),
               SizedBox(
@@ -213,7 +213,7 @@ class _MassageCardState extends State<MassageCard> {
               child: const Text(
                 "Cencel",
                 style: TextStyle(
-                  color: Colors.blue,
+                  color: darkColor,
                   fontSize: 16,
                 ),
               ),
@@ -227,7 +227,7 @@ class _MassageCardState extends State<MassageCard> {
               child: const Text(
                 "Update",
                 style: TextStyle(
-                  color: Colors.blue,
+                  color: darkColor,
                   fontSize: 16,
                 ),
               ),
@@ -261,7 +261,7 @@ class _MassageCardState extends State<MassageCard> {
                   ? Border.all(
                       color: const Color.fromARGB(255, 235, 250, 254),
                     )
-                  : Border.all(color: Colors.blue),
+                  : Border.all(color: darkColor),
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(30),
                 topRight: Radius.circular(30),
@@ -303,7 +303,7 @@ class _MassageCardState extends State<MassageCard> {
                       Container(
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: Clrs.mainColor.withOpacity(.4),
+                            color: darkColor.withOpacity(.4),
                             width: 4,
                           ),
                           borderRadius: BorderRadius.circular(
@@ -409,7 +409,7 @@ class _MassageCardState extends State<MassageCard> {
                           if (widget.message.read.isNotEmpty)
                             const Icon(
                               Icons.done_all_rounded,
-                              color: Colors.blue,
+                              color: darkColor,
                               size: 21,
                             ),
                           if (widget.message.read.isEmpty)
@@ -438,7 +438,7 @@ class _MassageCardState extends State<MassageCard> {
                       Container(
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: Clrs.mainColor.withOpacity(.4),
+                            color: darkColor.withOpacity(.4),
                             width: 4,
                           ),
                           borderRadius: BorderRadius.circular(
@@ -474,7 +474,7 @@ class _MassageCardState extends State<MassageCard> {
                           if (widget.message.read.isNotEmpty)
                             const Icon(
                               Icons.done_all_rounded,
-                              color: Colors.blue,
+                              color: darkColor,
                               size: 21,
                             ),
                           if (widget.message.read.isEmpty)

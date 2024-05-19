@@ -17,6 +17,8 @@ void main() async {
 }
 
 late Size mq;
+const Color darkColor = Color(0xFF2C2C2C);
+const Color yellowColor = Color(0xFFF9AA33);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
       title: 'FixLit Hub',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.blue,
+          seedColor: darkColor,
         ),
         useMaterial3: true,
       ),
@@ -41,7 +43,7 @@ class MyApp extends StatelessWidget {
 
 class BuilderScreen extends StatefulWidget {
   const BuilderScreen({super.key});
- 
+
   @override
   State<BuilderScreen> createState() => _BuilderScreenState();
 }

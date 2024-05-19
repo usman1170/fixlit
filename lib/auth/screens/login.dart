@@ -5,7 +5,6 @@ import 'package:fixlit/auth/screens/forgotpass.dart';
 import 'package:fixlit/auth/screens/signup.dart';
 import 'package:fixlit/auth/widgets/loading_screen.dart';
 import 'package:fixlit/main.dart';
-import 'package:fixlit/utils/pallate.dart';
 import 'package:fixlit/widgets/dialogs.dart';
 import 'package:fixlit/widgets/grey_text.dart';
 import 'package:flutter/material.dart';
@@ -43,36 +42,35 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    mycolor = Colors.blue.shade400;
+    mycolor = darkColor;
     mq = MediaQuery.of(context).size;
     return isLoading
         ? const LoadingScreen()
-        : Container(
-            decoration: BoxDecoration(
-              color: mycolor,
-              image: const DecorationImage(
-                image: AssetImage("assets/imgs/bg3.jpg"),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: GestureDetector(
-              onTap: () {
-                FocusScope.of(context).unfocus();
-              },
-              child: Scaffold(
-                backgroundColor: Colors.transparent,
-                body: Stack(
-                  children: [
-                    Positioned(
-                      top: mq.height * .1,
-                      child: _mainTopBuild(),
+        : GestureDetector(
+            onTap: () {
+              FocusScope.of(context).unfocus();
+            },
+            child: Scaffold(
+              backgroundColor: Colors.white,
+              body: Stack(
+                children: [
+                  Positioned(
+                    top: 0,
+                    child: Container(
+                      height: 38,
+                      width: MediaQuery.of(context).size.width,
+                      color: darkColor,
                     ),
-                    Positioned(
-                      bottom: 0,
-                      child: _bottomBuild(),
-                    ),
-                  ],
-                ),
+                  ),
+                  Positioned(
+                    top: mq.height * .1,
+                    child: _mainTopBuild(),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    child: _bottomBuild(),
+                  ),
+                ],
               ),
             ),
           );
@@ -90,8 +88,10 @@ class _LoginScreenState extends State<LoginScreen> {
             height: 110,
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
+              image: DecorationImage(
+                image: AssetImage("assets/icon/playstore.png"),
+              ),
             ),
-            child: Image.asset('assets/icon/playstore.png'),
           ),
           const SizedBox(
             height: 12,
@@ -99,12 +99,9 @@ class _LoginScreenState extends State<LoginScreen> {
           const Text(
             "FixLit Hub",
             style: TextStyle(
-              color: Colors.white,
+              color: darkColor,
               fontSize: 28,
               fontWeight: FontWeight.w700,
-              shadows: [
-                Shadow(color: Colors.blue, blurRadius: 8, offset: Offset(1, 2))
-              ],
             ),
           )
         ],
@@ -144,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
           style: TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.w600,
-              color: Colors.blue,
+              color: darkColor,
               letterSpacing: .4),
         ),
         greyText("Please Enter your Login info"),
@@ -191,13 +188,13 @@ class _LoginScreenState extends State<LoginScreen> {
             isPassword ? const Icon(Icons.lock) : const Icon(Icons.email),
         hintText: isPassword ? "Enter password" : "Enter Email",
         hintStyle: const TextStyle(fontSize: 13, color: Colors.grey),
-        prefixIconColor: Colors.blue,
+        prefixIconColor: darkColor,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
         focusedBorder: const OutlineInputBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(20),
             ),
-            borderSide: BorderSide(color: Colors.blue)),
+            borderSide: BorderSide(color: darkColor)),
         contentPadding: const EdgeInsets.only(
           top: 18,
           bottom: 18,
@@ -212,7 +209,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 child: const Icon(
                   Icons.remove_red_eye,
-                  color: Colors.blue,
+                  color: darkColor,
                 ),
               )
             : const SizedBox(),
@@ -259,9 +256,9 @@ class _LoginScreenState extends State<LoginScreen> {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           shape: const StadiumBorder(),
-          backgroundColor: Colors.blue,
+          backgroundColor: darkColor,
           elevation: 8,
-          shadowColor: Colors.blue,
+          shadowColor: darkColor,
           minimumSize: const Size.fromHeight(55)),
       onPressed: () async {
         setState(() {
@@ -323,21 +320,21 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _termConditions() {
-    return Center(
+    return const Center(
       child: SizedBox(
         width: 250,
         child: Center(
           child: Column(children: [
             Text.rich(
               TextSpan(children: [
-                const TextSpan(
+                TextSpan(
                   text: "By logging in it means you have agreed to our  ",
                   style: TextStyle(color: Colors.black54),
                 ),
                 TextSpan(
                   text: "Terms and Conditions",
-                  style: TextStyle(
-                      color: Clrs.mainColor, fontWeight: FontWeight.w500),
+                  style:
+                      TextStyle(color: darkColor, fontWeight: FontWeight.w500),
                 )
               ]),
               textAlign: TextAlign.center,

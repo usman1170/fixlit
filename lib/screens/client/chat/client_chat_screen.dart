@@ -1,10 +1,10 @@
 // ignore_for_file: deprecated_member_use, avoid_print
 import 'dart:io';
+import 'package:fixlit/main.dart';
 import 'package:fixlit/models/message_model.dart';
 import 'package:fixlit/models/service_provider_model.dart';
 import 'package:fixlit/screens/client/chat/client_massage_card.dart';
 import 'package:fixlit/services/apis.dart';
-import 'package:fixlit/utils/pallate.dart';
 import 'package:fixlit/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -31,10 +31,10 @@ class _ClientChatScreenState extends State<ClientChatScreen> {
       child: Scaffold(
         backgroundColor: const Color.fromARGB(255, 235, 250, 254),
         appBar: AppBar(
-          backgroundColor: Clrs.mainColor,
-          leading: BackPopButton(
+          backgroundColor: darkColor,
+          leading: const BackPopButton(
             color: Colors.white,
-            bgcolor: Clrs.mainColor,
+            bgcolor: darkColor,
           ),
           title: Text(
             // .capitalizes with velocity x
@@ -218,7 +218,7 @@ class _ClientChatScreenState extends State<ClientChatScreen> {
                         hintText: "Type somthing...",
                         contentPadding: EdgeInsets.only(left: 8),
                         hintStyle: TextStyle(
-                          color: Colors.blueAccent,
+                          color: darkColor,
                           fontSize: 15,
                         ),
                         border: InputBorder.none,
@@ -242,7 +242,7 @@ class _ClientChatScreenState extends State<ClientChatScreen> {
                     icon: const Icon(
                       Icons.image,
                       size: 26,
-                      color: Colors.blueAccent,
+                      color: darkColor,
                     ),
                   ),
                   IconButton(
@@ -263,7 +263,7 @@ class _ClientChatScreenState extends State<ClientChatScreen> {
                     icon: const Icon(
                       Icons.camera_alt,
                       size: 28,
-                      color: Colors.blueAccent,
+                      color: darkColor,
                     ),
                   ),
                   SizedBox(
@@ -278,7 +278,7 @@ class _ClientChatScreenState extends State<ClientChatScreen> {
             padding:
                 const EdgeInsets.only(top: 12, bottom: 12, left: 12, right: 8),
             shape: const CircleBorder(),
-            color: Colors.blue.shade700,
+            color: darkColor,
             onPressed: () {
               if (_textController.text.isNotEmpty) {
                 if (_list.isEmpty) {

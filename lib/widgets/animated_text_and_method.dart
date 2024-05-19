@@ -1,6 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:fixlit/main.dart';
-import 'package:fixlit/utils/pallate.dart';
 import 'package:flutter/material.dart';
 
 class MethodWidget extends StatelessWidget {
@@ -244,9 +243,9 @@ class DotWidget extends StatelessWidget {
       child: Container(
         height: 10,
         width: 10,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           shape: BoxShape.circle,
-          color: Clrs.mainColor,
+          color: darkColor,
         ),
         child: Center(
             child: Container(

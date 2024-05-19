@@ -27,6 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -44,12 +45,12 @@ class _SplashScreenState extends State<SplashScreen> {
             const SizedBox(
               height: 20,
             ),
-            Text(
+            const Text(
               "FixLit Hub",
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.w600,
-                color: Colors.blue.shade700,
+                color: darkColor,
               ),
             ),
           ],
@@ -64,10 +65,10 @@ class _SplashScreenState extends State<SplashScreen> {
           margin: const EdgeInsets.only(left: 12, right: 12, bottom: 18),
           height: 60,
           decoration: BoxDecoration(
-            color: Colors.blue.shade100.withOpacity(.6),
+            color: Colors.black12.withOpacity(.3),
             borderRadius: BorderRadius.circular(30),
           ),
-          child: Center(
+          child: const Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -75,18 +76,18 @@ class _SplashScreenState extends State<SplashScreen> {
                   "Powered by",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.blue.shade500,
+                    color: darkColor,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(
+                SizedBox(
                   width: 6,
                 ),
                 Text(
                   "SyncEX",
                   style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.blue.shade800,
+                    fontSize: 17,
+                    color: Colors.black,
                     fontWeight: FontWeight.w700,
                   ),
                 )

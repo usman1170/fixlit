@@ -1,7 +1,6 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:fixlit/main.dart';
-import 'package:fixlit/utils/pallate.dart';
 import 'package:fixlit/widgets/client_home/profile_header.dart';
 import 'package:flutter/material.dart';
 
@@ -16,9 +15,9 @@ class ClientCustomAppBar extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.symmetric(vertical: 18),
-      decoration: BoxDecoration(
-        color: Clrs.mainColor,
-        borderRadius: const BorderRadius.only(
+      decoration: const BoxDecoration(
+        color: darkColor,
+        borderRadius: BorderRadius.only(
           bottomRight: Radius.circular(50),
         ),
       ),
