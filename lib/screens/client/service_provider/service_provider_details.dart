@@ -4,7 +4,6 @@ import 'package:fixlit/models/service_provider_model.dart';
 import 'package:fixlit/screens/client/chat/client_chat_screen.dart';
 import 'package:fixlit/screens/client/service_provider/address_detail_widget.dart';
 import 'package:fixlit/screens/client/service_provider/upper_contaier.dart';
-import 'package:fixlit/screens/service%20provider/image_clip_view.dart';
 import 'package:fixlit/services/apis.dart';
 import 'package:fixlit/utils/pallate.dart';
 import 'package:fixlit/widgets/dialogs.dart';
@@ -125,7 +124,7 @@ class _ServiceProviderDetailsState extends State<ServiceProviderDetails> {
                   const SizedBox(
                     height: 16,
                   ),
-                  AddressDetailsWidget(title: "Address", msg: data.address),
+                  AddressDetailsWidget(title: "Address :", msg: data.address),
                   const SizedBox(
                     height: 16,
                   ),
@@ -174,60 +173,6 @@ class _ServiceProviderDetailsState extends State<ServiceProviderDetails> {
                   ),
                   const SizedBox(
                     height: 18,
-                  ),
-                  Container(
-                    height: 50,
-                    width: 220,
-                    decoration: BoxDecoration(
-                      color: Clrs.mainColor,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: const Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Service licence",
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 8,
-                          ),
-                          Icon(
-                            Icons.arrow_downward,
-                            color: Colors.white,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 18,
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(
-                      horizontal: mq.width * .05,
-                    ),
-                    padding: const EdgeInsets.all(
-                      14,
-                    ),
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * .3,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                        color: Clrs.mainColor,
-                      ),
-                    ),
-                    child: ImageViewerClip(
-                      urlImage: data.license,
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * .3,
-                    ),
                   ),
 
                   //

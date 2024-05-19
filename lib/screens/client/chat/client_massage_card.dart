@@ -127,8 +127,8 @@ class _MassageCardState extends State<MassageCard> {
                 ),
                 name: "Delete message",
                 ontap: () async {
+                  Navigator.of(context).pop();
                   await Services.deleteMessage(widget.message).then((value) {
-                    Navigator.pop(context);
                     Dialogs.showMassage(context, "Message deleted");
                   });
                 },

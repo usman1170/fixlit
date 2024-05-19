@@ -88,7 +88,7 @@ class AddressDetailsWidget extends StatelessWidget {
                     width: mq.width * .06,
                   ),
                   Text(
-                    "$title :",
+                    title,
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,

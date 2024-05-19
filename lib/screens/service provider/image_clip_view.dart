@@ -25,11 +25,13 @@ class ImageViewerClip extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         child: GestureDetector(
           onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ImageViewScreen(image: urlImage),
-                ));
+            if (urlImage != "") {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ImageViewScreen(image: urlImage),
+                  ));
+            }
           },
           child: Image.network(
             urlImage,

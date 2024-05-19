@@ -41,21 +41,21 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
             isSearch: true,
           ),
           const SizedBox(
-            height: 17,
+            height: 16,
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const UpperCatagoryHeader(),
               const SizedBox(
-                height: 20,
+                height: 18,
               ),
               Row(
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 14),
                     child: Text(
-                      "Populer Services :",
+                      "Popular Services",
                       style: TextStyle(
                         fontSize: 20,
                         color: Clrs.mainColor,
@@ -66,7 +66,7 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
                 ],
               ),
               const SizedBox(
-                height: 16,
+                height: 12,
               ),
               Padding(
                 padding:
@@ -80,7 +80,7 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
                   options: CarouselOptions(
                     autoPlay: true,
                     autoPlayAnimationDuration: const Duration(seconds: 2),
-                    height: MediaQuery.of(context).size.height * .32,
+                    height: MediaQuery.of(context).size.height * .38,
                     onPageChanged: (index, reason) => setState(() {
                       activeIndex = index;
                     }),

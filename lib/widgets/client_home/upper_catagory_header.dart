@@ -26,7 +26,7 @@ class _UpperCatagoryHeaderState extends State<UpperCatagoryHeader> {
                 Text(
                   "Browse by Catagory",
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 20,
                     fontWeight: FontWeight.w600,
                     color: Clrs.mainColor,
                   ),
@@ -66,12 +66,12 @@ class _UpperCatagoryHeaderState extends State<UpperCatagoryHeader> {
                 icon: Icons.brush,
               ),
               CatagoryWidget(
-                title: "Electrition",
+                title: "Electrician",
                 icon: Icons.flash_on,
               ),
               CatagoryWidget(
                 title: "Driver",
-                icon: CupertinoIcons.car,
+                icon: CupertinoIcons.car_detailed,
               ),
               CatagoryWidget(
                 title: "Plumbing",

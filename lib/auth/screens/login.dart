@@ -331,7 +331,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Text.rich(
               TextSpan(children: [
                 const TextSpan(
-                  text: "By loggin in it means yor have agreed to our  ",
+                  text: "By logging in it means you have agreed to our  ",
                   style: TextStyle(color: Colors.black54),
                 ),
                 TextSpan(

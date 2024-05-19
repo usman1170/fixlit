@@ -53,7 +53,7 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
           children: [
             _topBuild(),
             const SizedBox(
-              height: 18,
+              height: 28,
             ),
             _bottomBuild(),
           ],
@@ -68,13 +68,13 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Container(
-          height: 160,
-          width: 160,
+          height: 150,
+          width: 150,
           decoration: const BoxDecoration(
             shape: BoxShape.circle,
           ),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(75),
+            borderRadius: BorderRadius.circular(100),
             child: Image.network(
               user.image,
               fit: BoxFit.cover,
@@ -101,7 +101,7 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
                   height: 100,
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(50),
+                    borderRadius: BorderRadius.circular(100),
                   ),
                   child: const Icon(
                     Icons.person,
@@ -120,7 +120,8 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
           user.name == "" ? "Edit profile to add Name" : user.name,
           style: const TextStyle(
             color: Colors.white,
-            fontSize: 15,
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
           ),
         ),
         const SizedBox(
@@ -130,9 +131,9 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
           user.email,
           style: const TextStyle(
             color: Colors.white,
-            fontSize: 17,
+            fontSize: 14,
             letterSpacing: .4,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w400,
           ),
         ),
       ],
@@ -168,11 +169,6 @@ class _ClientProfileScreenState extends State<ClientProfileScreen> {
                     ),
                   );
                 },
-              ),
-              TileWidget(
-                title: "Settings",
-                icon: Icons.arrow_forward_ios,
-                ontap: () {},
               ),
               TileWidget(
                 title: "Change Password",

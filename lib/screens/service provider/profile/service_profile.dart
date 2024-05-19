@@ -70,7 +70,7 @@ class _ServiceProfileScreenState extends State<ServiceProfileScreen> {
             shape: BoxShape.circle,
           ),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(75),
+            borderRadius: BorderRadius.circular(100),
             child: GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -105,7 +105,7 @@ class _ServiceProfileScreenState extends State<ServiceProfileScreen> {
                     height: 100,
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(50),
+                      borderRadius: BorderRadius.circular(75),
                     ),
                     child: const Icon(
                       Icons.person,
@@ -125,7 +125,8 @@ class _ServiceProfileScreenState extends State<ServiceProfileScreen> {
           user.name == "" ? "Edit profile to add Name" : user.name,
           style: const TextStyle(
             color: Colors.white,
-            fontSize: 15,
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
           ),
         ),
         const SizedBox(
@@ -135,9 +136,9 @@ class _ServiceProfileScreenState extends State<ServiceProfileScreen> {
           user.email,
           style: const TextStyle(
             color: Colors.white,
-            fontSize: 17,
+            fontSize: 14,
             letterSpacing: .4,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w400,
           ),
         ),
       ],
@@ -173,11 +174,6 @@ class _ServiceProfileScreenState extends State<ServiceProfileScreen> {
                     ),
                   );
                 },
-              ),
-              TileWidget(
-                title: "Settings",
-                icon: Icons.arrow_forward_ios,
-                ontap: () {},
               ),
               TileWidget(
                 title: "Change Password",

@@ -56,17 +56,27 @@ class _ChatUSerCardState extends State<ChatUSerCard> {
               child: ListTile(
                 leading: ImageViewerClip(
                     urlImage: users.image, height: 46, width: 46),
-                title: Text(
-
-                    // .capitalizes with velocity x
-                    "${users.name}, ${users.catagory}"),
+                title: Column(
+                  // mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      users.name,
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                    ),
+                    Text(
+                      users.catagory,
+                      style: const TextStyle(fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
                 // for last message
                 subtitle: Text(
                   _message != null
                       ? _message!.type == Type.image
                           ? "Image"
                           : _message!.msg
-                      : users.catagory,
+                      : "Start chat...",
                   maxLines: 1,
                 ),
                 // for message sent or received time
